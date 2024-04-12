@@ -8,42 +8,43 @@ public class RentalService {
 	private RentalDAO_interface dao;
 
 	public RentalService() {
-		dao = new RentalDAO();
+		dao = new RentalJDBCDAO();
+//		dao = new RentalDAO();
 	}
 
-//	public RentalVO addRental(Integer rNo, Integer rCatNo, String rName,BigDecimal rPrice, Integer rSize, String rColor, String rInfo, Byte rStat) {
-//
-//		RentalVO rentalVO = new RentalVO();
-//
-//		rentalVO.setrNo(rNo);
-//		rentalVO.setrCatNo(rCatNo);
-//		rentalVO.setrName(rName);
-//		rentalVO.setrPrice(rPrice);
-//		rentalVO.setrSize(rSize);
-//		rentalVO.setrColor(rColor);
-//		rentalVO.setrInfo(rInfo);
-//		rentalVO.setrStat(rStat);
-//		dao.insert(rentalVO);
-//	}
-
-	//新增 (Spring MVC用)
-	public void addRental(RentalVO rentalVO) {
-		dao.insert(rentalVO);
-	}
-	
-	//修改
-	public RentalVO updateRental(Integer rNo, Integer rCatNo, String rName,BigDecimal rPrice, Integer rSize, String rColor, String rInfo, Byte rStat) {
+	public RentalVO addRental(String rName,BigDecimal rPrice, Integer rSize, String rColor, String rInfo, Byte rStat, Integer rCatNo) {
 
 		RentalVO rentalVO = new RentalVO();
-
-		rentalVO.setrNo(rNo);
-		rentalVO.setrCatNo(rCatNo);
 		rentalVO.setrName(rName);
 		rentalVO.setrPrice(rPrice);
 		rentalVO.setrSize(rSize);
 		rentalVO.setrColor(rColor);
 		rentalVO.setrInfo(rInfo);
 		rentalVO.setrStat(rStat);
+		rentalVO.setrCatNo(rCatNo);
+		dao.insert(rentalVO);
+
+		return rentalVO;
+	}
+
+//	//新增 (Spring MVC用)
+//	public void addRental(RentalVO rentalVO) {
+//		dao.insert(rentalVO);
+//	}
+	
+	//修改
+	public RentalVO updateRental(Integer rNo, String rName,BigDecimal rPrice, Integer rSize, String rColor, String rInfo, Byte rStat, Integer rCatNo) {
+
+		RentalVO rentalVO = new RentalVO();
+
+		rentalVO.setrNo(rNo);
+		rentalVO.setrName(rName);
+		rentalVO.setrPrice(rPrice);
+		rentalVO.setrSize(rSize);
+		rentalVO.setrColor(rColor);
+		rentalVO.setrInfo(rInfo);
+		rentalVO.setrStat(rStat);
+		rentalVO.setrCatNo(rCatNo);
 		dao.update(rentalVO);
 
 		return dao.findByPrimaryKey(rNo);

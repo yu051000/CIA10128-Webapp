@@ -1,15 +1,18 @@
 package com.rental.model;
 import java.math.BigDecimal;
 
+
+//@Entity //必要! 對應到資料庫的永續類別
+//@Table(name = "Rental")
 public class RentalVO implements java.io.Serializable{
     private Integer rNo;
-    private Integer rCatNo;
     private String rName;
     private BigDecimal rPrice;
     private Integer rSize;
     private String rColor;
     private String rInfo;
     private Byte rStat;
+    private Integer rCatNo;
 
     public Integer getrNo() {
         return rNo;
@@ -17,14 +20,6 @@ public class RentalVO implements java.io.Serializable{
 
     public void setrNo(Integer rNo) {
         this.rNo = rNo;
-    }
-
-    public Integer getrCatNo() {
-        return rCatNo;
-    }
-
-    public void setrCatNo(Integer rCatNo) {
-        this.rCatNo = rCatNo;
     }
 
     public String getrName() {
@@ -73,5 +68,13 @@ public class RentalVO implements java.io.Serializable{
 
     public void setrStat(Byte rStat) {
         this.rStat = rStat;
+    }
+
+    public Integer getrCatNo() {
+        return rCatNo;
+    }
+
+    public void setrCatNo(Integer rCatNo) {
+        this.rCatNo = rCatNo;
     }
 }

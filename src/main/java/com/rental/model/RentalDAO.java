@@ -1,14 +1,13 @@
 package com.rental.model;
 
-	import java.util.*;
-	import java.sql.*;
+import java.util.*;
+import java.sql.*;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 
-	import javax.naming.Context;
-	import javax.naming.InitialContext;
-	import javax.naming.NamingException;
-	import javax.sql.DataSource;
-
-	public class RentalDAO implements RentalDAO_interface {
+	public class RentalDAO implements RentalDAO_interface {  //實作介面
 
 		// 一個應用程式中,針對一個資料庫 ,共用一個DataSource即可
 		private static DataSource ds = null;
@@ -21,17 +20,19 @@ package com.rental.model;
 			}
 		}
 
-	    private static final String INSERT_STMT =
-            "INSERT INTO Rental(rNO, rCatNo, rName, rPrice, rSize, rColor, rInfo, rStat) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+		private static final String INSERT_STMT =
+			"INSERT INTO Rental(rName, rPrice, rSize, rColor, rInfo, rStat, rCatNo) VALUES(?, ?, ?, ?, ?, ?, ?)";
 
-        private static final String UPDATE =
-            "UPDATE Rental SET rCatNo=?, rName=?, rPrice=?, rSize=?, rColor=?, rInfo=?, rStat=? WHERE rNo=?";
+		private static final String GET_ALL_STMT =
+				"SELECT rNO, rName, rPrice, rSize, rColor, rInfo, rStat, rCatNo FROM Rental ORDER BY rNo";
 
-        private static final String GET_ONE_STMT =
-            "SELECT rNO, rCatNo, rName, rPrice, rSize, rColor, rInfo, rStat WHERE rNo=?";
+		private static final String GET_ONE_STMT =
+				"SELECT rNO, rName, rPrice, rSize, rColor, rInfo, rStat, rCatNo FROM Rental WHERE rNo=?";
 
-        private static final String GET_ALL_STMT =
-            "SELECT rNO, rCatNo, rName, rPrice, rSize, rColor, rInfo, rStat FROM Rental ORDER BY rNo";
+		private static final String UPDATE =
+				"UPDATE Rental SET rName=?, rPrice=?, rSize=?, rColor=?, rInfo=?, rStat=? ,rCatNo=? WHERE rNo=?";
+//	private static final String DELETE =
+//			"DELETE FROM Rental where rNo = ?";
 
 		@Override
 		public void insert(RentalVO rentalVO) {
@@ -43,14 +44,13 @@ package com.rental.model;
 				con = ds.getConnection();
 				pstmt = con.prepareStatement(INSERT_STMT);
 
-	            pstmt.setInt(1, rentalVO.getrNo());
-	            pstmt.setInt(2, rentalVO.getrCatNo());
-	            pstmt.setString(3, rentalVO.getrName());
-	            pstmt.setBigDecimal(5, rentalVO.getrPrice());
-	            pstmt.setInt(6, rentalVO.getrSize());
-	            pstmt.setString(7, rentalVO.getrColor());
-	            pstmt.setString(8, rentalVO.getrInfo());
-	            pstmt.setByte(9, (byte) rentalVO.getrStat());
+	            pstmt.setString(1, rentalVO.getrName());
+	            pstmt.setBigDecimal(2, rentalVO.getrPrice());
+	            pstmt.setInt(3, rentalVO.getrSize());
+	            pstmt.setString(4, rentalVO.getrColor());
+	            pstmt.setString(5, rentalVO.getrInfo());
+	            pstmt.setByte(6, rentalVO.getrStat());
+				pstmt.setInt(7, rentalVO.getrCatNo());
 
 				pstmt.executeUpdate();
 
@@ -76,7 +76,6 @@ package com.rental.model;
 					}
 				}
 			}
-
 		}
 
 		@Override
@@ -86,17 +85,17 @@ package com.rental.model;
 			PreparedStatement pstmt = null;
 
 			try {
-
 				con = ds.getConnection();
 				pstmt = con.prepareStatement(UPDATE);
 
+				pstmt.setInt(1, rentalVO.getrNo());
 				pstmt.setInt(2, rentalVO.getrCatNo());
 	            pstmt.setString(3, rentalVO.getrName());
-	            pstmt.setBigDecimal(5, rentalVO.getrPrice());
-	            pstmt.setInt(6, rentalVO.getrSize());
-	            pstmt.setString(7, rentalVO.getrColor());
-	            pstmt.setString(8, rentalVO.getrInfo());
-	            pstmt.setByte(9, (byte) rentalVO.getrStat());
+	            pstmt.setBigDecimal(4, rentalVO.getrPrice());
+	            pstmt.setInt(5, rentalVO.getrSize());
+	            pstmt.setString(6, rentalVO.getrColor());
+	            pstmt.setString(7, rentalVO.getrInfo());
+	            pstmt.setByte(8, rentalVO.getrStat());
 
 	            pstmt.executeUpdate();
 
@@ -122,7 +121,6 @@ package com.rental.model;
 					}
 				}
 			}
-
 		}
 
 		
@@ -194,7 +192,6 @@ package com.rental.model;
 			ResultSet rs = null;
 
 			try {
-
 				con = ds.getConnection();
 				pstmt = con.prepareStatement(GET_ALL_STMT);
 				rs = pstmt.executeQuery();

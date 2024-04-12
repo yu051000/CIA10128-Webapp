@@ -7,6 +7,8 @@ public interface RentalDAO_interface {
 
         public void update(RentalVO rentalVO); //前端請求
 
+//        public void delete(Integer rNo);
+
         public RentalVO findByPrimaryKey(Integer rNo);
 
         public List<RentalVO> getAll();
