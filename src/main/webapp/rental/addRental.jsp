@@ -2,11 +2,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.rental.model.*"%>
 
+<%
+	RentalVO rentalVO = (RentalVO) request.getAttribute("rentalVO"); //RentalServlet.java(Controller), 存入req的rentalVO物件
+%>
+
+<!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<meta charset="UTF-8">
 	<title>租借品資料新增 - addRental.jsp</title>
-
 	<style>
 		table#table-1 {
 			width: 450px;
@@ -24,7 +28,6 @@
 			display: inline;
 		}
 	</style>
-
 	<style>
 		table {
 			background-color: white;
@@ -38,15 +41,16 @@
 			padding: 1px;
 		}
 	</style>
-
 </head>
-<body bgcolor='white'>
 
+<body>
 <table id="table-1">
-	<tr><td>
-		<h3>租借品資料新增</h3></td><td>
-		<h4><a href="select_page.jsp"><img src="images/tomcat.png" width="100" height="100" border="0">回首頁</a></h4>
-	</td></tr>
+	<tr>
+		<td>
+			<h3>租借品類別資料新增</h3>
+			<h4><a href="<%=request.getContextPath()%>select_page.jsp">回首頁</a></h4>
+		</td>
+	</tr>
 </table>
 
 <h3>新增資料：</h3>
@@ -61,7 +65,7 @@
 	</ul>
 </c:if>
 
-<FORM METHOD="post" ACTION="rental.do" name="form1" id="addform1">
+<FORM method="post" action="<%=request.getContextPath()%>/rental.do" enctype="multipart/form-data">
 	<table>
 		<tr>
 			<td>租借品名稱:</td>
@@ -69,77 +73,46 @@
 		</tr>
 		<tr>
 			<td>租借品單價:</td>
-			<td><input type="TEXT" name="rPrice" id="rPrice" value="${param.rPrice}"   size="45"/></td> <td>${errorMsgs.rPrice}</td>
+			<td><input type="TEXT" name="rPrice" id="rPrice" value="<%=(rentalVO==null) ? "" : rentalVO.getrPrice()%>"></td>
 		</tr>
 		<tr>
 			<td>租借品尺寸:</td>
-			<td><input type="TEXT" name="rSize" id="rSize" value="${param.rSize}"   size="45"/></td> <td>${errorMsgs.rSize}</td>
+			<td><input type="TEXT" name="rSize" id="rSize" value="<%=(rentalVO==null) ? "" : rentalVO.getrSize()%>"></td>
 		</tr>
 		<tr>
 			<td>租借品顏色:</td>
-			<td><input type="TEXT" name="rColor" id="rColor" value="${param.rColor}"   size="45"/></td> <td>${errorMsgs.rColor}</td>
+			<td><input type="TEXT" name="rColor" id="rColor" value="<%=(rentalVO==null) ? "" : rentalVO.getrColor()%>"></td>
 		</tr>
 		<tr>
 			<td>租借品資訊:</td>
-			<td><input type="TEXT" name="rInfo" id="rInfo" value="${param.rInfo}"   size="45"/></td> <td>${errorMsgs.rInfo}</td>
+			<td><input type="TEXT" name="rInfo" id="rInfo" value="<%=(rentalVO==null) ? "" : rentalVO.getrInfo()%>"></td>
 		</tr>
 		<tr>
 			<td>租借品狀態:</td>
-			<td><input type="TEXT" name="rStat" id="rStat" value="${param.rStat}"   size="45"/></td> <td>${errorMsgs.rStat}</td>
+			<td><input type="TEXT" name="rStat" id="rStat" value="<%=(rentalVO==null) ? "" : rentalVO.getrStat()%>"></td>
 		</tr>
-		<jsp:useBean id="rentalSvc" scope="page" class="com.rental.model.RentalService" />
 		<tr>
 			<td>租借品類別編號:</td>
-			<td><input type="TEXT" name="rCatNo" id="rCatNo" value="${param.rCatNo}" size="45"/></td> <td>${errorMsgs.rCatNo}</td>
+			<td><input type="TEXT" name="rCatNo" id="rCatNo" value="<%=(rentalVO==null) ? "" : rentalVO.getrCatNo()%>"></td>
 		</tr>
 
 	</table>
 	<br>
 	<input type="hidden" name="action" value="insert">
-	<input type="submit" value="送出新增">
+	<input type="submit" id="submitAdd" value="送出新增">
 </FORM>
-
 	<script src="<%=request.getContextPath()%>/jquery/jquery.js"></script>
-	<script>
-		$(function (){
+<%--	<script>--%>
+<%--		$(function (){--%>
 
-			$("#addform1").on("submit", function(event){ //表單送出，觸發"submit"事件
-				event.preventDefault(); //停止預設
+<%--			$("#addform1").on("submit", function(event){ //表單送出，觸發"submit"事件--%>
+<%--				event.preventDefault(); //停止預設--%>
 
-				// 取得表單的數據
-				var rName = $("#rName").val();
-				var password = $("#password").val();
-			});
-		});
-	</script>
-
-
-
-
-<script>
-	function previewImg(file) {
-		var reader = new FileReader();
-		reader.readAsDataURL(file);
-		reader.onload = function () {
-			var imgStr = '<img src="' + reader.result + '" class="preview_img">';
-			document.getElementById('preview').innerHTML = imgStr;
-		};
-	}
-
-	window.onload = function () {
-		document.getElementById('pPic').addEventListener('change', function (e) {
-			if (this.files.length > 0) {
-				previewImg(this.files[0]);
-			} else {
-				document.getElementById('preview').innerHTML = '<span class="text">預覽圖</span>';
-			}
-		});
-	};
-</script>
-
-
-
-
-
+<%--				// 取得表單的數據--%>
+<%--				var rName = $("#rName").val();--%>
+<%--				var password = $("#password").val();--%>
+<%--			});--%>
+<%--		});--%>
+<%--	</script>--%>
 </body>
 </html>

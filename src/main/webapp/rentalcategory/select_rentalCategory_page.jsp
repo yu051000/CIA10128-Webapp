@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>租借品類別 - select_rentalCategory_page.jsp</title>
+    <title>查詢租借品類別 - select_rentalCategory_page.jsp</title>
     <style>
         table#table-1 {
             width: 450px;
@@ -29,7 +29,6 @@
 </head>
 
 <body>
-
 <table id="table-1">
     <tr><td><h3>租借品類別Home</h3><h4>( MVC )</h4></td></tr>
 </table>
@@ -51,9 +50,9 @@
         <a href='<%=request.getContextPath()%>listAllRentalCategory.jsp'>查詢所有租借品類別</a><br><br>
     </li>
     <li>
-        <FORM method="post" action="<%=request.getContextPath()%>/rentalCategory.do">
+        <FORM method="post" action="<%=request.getContextPath()%>/rentalCategory.do" enctype="multipart/form-data">
             <b>輸入租借品類別編號 (ex. 1):</b>
-            <input type="text" name="rCatNo">
+            <input type="text" name="rCatNo" value="${rentalCategoryVO.rCatNo}"><font color=red>${errorMsgs.rCatNo}</font>
             <input type="hidden" name="action" value="getOne_For_Display">
             <input type="submit" value="送出">
         </FORM>

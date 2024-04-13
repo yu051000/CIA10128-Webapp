@@ -13,7 +13,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>所有租借品類別資料查詢結果 - listAllRentalCategory.jsp</title>
+  <title>所有租借品類別資料查詢結果</title>
   <style>
     table#table-1 {
       background-color: #CCCCFF;
@@ -78,13 +78,15 @@
         <FORM method="post" action="<%=request.getContextPath()%>/rentalCategory.do" style="margin-bottom: 0px;">
           <input type="submit" id="update" value="修改">
           <input type="hidden" name="rCatNo"  value="${rentalCategoryVO.rCatNo}">
-          <input type="hidden" name="action"  value="getOne_For_Update"></FORM>
+          <input type="hidden" name="action"  value="getOne_For_Update">
+        </FORM>
       </td>
       <td>
         <FORM method="post" action="<%=request.getContextPath()%>/rentalCategory.do" style="margin-bottom: 0px;">
           <input type="submit" id="delete" value="刪除">
           <input type="hidden" name="rCatNo" value="${rentalCategoryVO.rCatNo}">
-          <input type="hidden" name="action" value="delete"></FORM>
+          <input type="hidden" name="action" value="delete">
+        </FORM>
       </td>
     </tr>
   </c:forEach>

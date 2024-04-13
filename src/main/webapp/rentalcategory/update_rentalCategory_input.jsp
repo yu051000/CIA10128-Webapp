@@ -46,12 +46,13 @@
 <table id="table-1">
     <tr>
         <td>
-            <h3>租借品類別資料修改 - update_rentalCategory_input.jsp</h3>
+            <h3>租借品類別資料修改</h3>
             <h4><a href="<%=request.getContextPath()%>select_rentalCategory_page.jsp">回首頁</a></h4>
         </td>
     </tr>
 </table>
 <h3>資料修改:</h3>
+
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
     <font style="color:red">請修正以下錯誤:</font>

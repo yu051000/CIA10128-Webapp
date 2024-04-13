@@ -1,14 +1,15 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
 <%@ page import="com.rental.model.*"%>
-<%-- 此頁暫練習採用 Script 的寫法取值 --%>
 
 <%
-    //RentalVO rentalVO = (RentalVO) request.getAttribute("rentalVO"); //RentalServlet.java(Concroller), 存入req的rentalVO物件
+    RentalVO rentalVO = (RentalVO) request.getAttribute("rentalVO"); //RentalServlet.java(Concroller), 存入req的rentalVO物件
 %>
 
+<!DOCTYPE html>
 <html>
 <head>
-    <title>租借品資料 - listOneRental.jsp</title>
+    <meta charset="UTF-8">
+    <title>租借品資料查詢結果 - listOneRental.jsp</title>
 
     <style>
         table#table-1 {
@@ -26,7 +27,6 @@
             display: inline;
         }
     </style>
-
     <style>
         table {
             width: 600px;
@@ -42,16 +42,17 @@
             text-align: center;
         }
     </style>
-
 </head>
-<body bgcolor='white'>
 
-<h4>此頁暫練習採用 Script 的寫法取值:</h4>
+<body>
 <table id="table-1">
-    <tr><td>
-        <h3>租借品資料 - listOneRental.jsp</h3>
-        <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
-    </td></tr>
+    <tr>
+        <td>
+
+        <h3>租借品資料</h3>
+        <h4><a href="<%=request.getContextPath()%>select_page.jsp">回首頁</a></h4>
+        </td>
+    </tr>
 </table>
 
 <table>
@@ -76,6 +77,5 @@
         <td>${rentalVO.rCatNo}-[${rentalVO.rCatNo.rName}]</td>
     </tr>
 </table>
-
 </body>
 </html>
