@@ -1,7 +1,8 @@
 package com.rentalcategory.model;
 
+import com.rental.model.RentalVO;
 import java.math.BigDecimal;
-import java.util.List;
+import java.util.*;
 
 public class RentalCategoryService {
 
@@ -38,16 +39,17 @@ public class RentalCategoryService {
         return rentalCategoryVO;
     }
 
+    //刪除
     public void deleteRentalCategory(Integer rCatNo) {
         dao.delete(rCatNo);
     }
 
-    //單筆取得
+    //單筆查詢(PK)
     public RentalCategoryVO getOneRentalCategory(Integer rCatNo) {
         return dao.findByPrimaryKey(rCatNo);
     }
 
-    //整筆取得
+    //整筆查詢
     public List<RentalCategoryVO> getAll() {
         return dao.getAll();
     }

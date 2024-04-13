@@ -91,6 +91,7 @@ public class RentalCategoryJDBCDAO implements RentalCategoryDAO_interface {
             pstmt.setInt(5, rentalCategoryVO.getrCatNo());
 
             pstmt.executeUpdate();
+            out.println("修改成功");
 
             // 驅動程式錯誤
         } catch (ClassNotFoundException e) {
@@ -288,6 +289,8 @@ public class RentalCategoryJDBCDAO implements RentalCategoryDAO_interface {
 			}
 		}
 	}
+
+
 //------------------------------------------------------------------------//
     public static void main(String[] args) {
 
@@ -316,7 +319,7 @@ public class RentalCategoryJDBCDAO implements RentalCategoryDAO_interface {
 		// 刪除
 		dao.delete(2);
 
-        // 單筆查詢
+        // 單筆查詢(PK)
         RentalCategoryVO rentalCategoryVO3 = dao.findByPrimaryKey(2);
         out.print(rentalCategoryVO3.getrCatNo() + ",");
         out.print(rentalCategoryVO3.getrCatName() + ",");
@@ -325,7 +328,7 @@ public class RentalCategoryJDBCDAO implements RentalCategoryDAO_interface {
         out.print(rentalCategoryVO3.getrDesPrice());
         out.println("---------------------");
 
-        // 全部查詢
+        // 查詢全部租借品
         List<RentalCategoryVO> list = dao.getAll();
         for (RentalCategoryVO aRentalCategory : list) {
             out.print(aRentalCategory.getrCatNo() + ",");
@@ -333,7 +336,7 @@ public class RentalCategoryJDBCDAO implements RentalCategoryDAO_interface {
             out.print(aRentalCategory.getrStockQty() + ",");
             out.print(aRentalCategory.getrRentedQty() + ",");
             out.print(aRentalCategory.getrDesPrice() + ",");
-            out.println();
+            out.println("---------------------");
         }
     }
 }

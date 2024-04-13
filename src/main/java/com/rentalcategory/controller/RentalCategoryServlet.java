@@ -8,7 +8,6 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import com.rentalcategory.model.*;
-
 import static java.lang.System.out;
 
 @WebServlet("/rentalCategory.do")
@@ -49,7 +48,6 @@ public class RentalCategoryServlet  extends HttpServlet {
             BigDecimal rDesPrice = null;
             try {
                 String rDesPriceStr = req.getParameter("rDesPrice").trim();
-                rDesPrice = new BigDecimal(rDesPriceStr);
             } catch (NumberFormatException e) {
                 rDesPrice = BigDecimal.ZERO;
                 errorMsgs.put("rDesPrice","租借品類別單價：請填數字");
@@ -150,6 +148,9 @@ public class RentalCategoryServlet  extends HttpServlet {
             /***************************3.修改完成,準備轉交(Send the Success view)*************/
             req.setAttribute("rentalCategoryVO", rentalCategoryVO); // 資料庫update成功後,正確的的rentalCategoryVO物件,存入req
             out.println("修改成功!");
+            String url = "/rentalcategory/listAllRentalCategory.jsp";
+            RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listAllRentalCategory.jsp
+            successView.forward(req, res);
         }
 //======================================================================================================================== "getAll"
 //======================================================================================================================== 待處理
@@ -176,7 +177,7 @@ public class RentalCategoryServlet  extends HttpServlet {
             /***************************3.查詢完成,準備轉交(Send the Success view)*************/
             req.setAttribute("rentalCategoryVOList", rentalCategoryVOList); // 將查詢到的通知消息列表存入請求屬性中
             String url = "/rentalcategory/listAllRentalCategory.jsp";
-            RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉發到 listAllNO.jsp 頁面
+            RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉發到 listAllRentalCategory.jsp 頁面
             successView.forward(req, res);
         }
 

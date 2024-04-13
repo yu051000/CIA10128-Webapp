@@ -1,7 +1,7 @@
 package com.rental.model;
 
 import java.math.BigDecimal;
-import java.util.List;
+import java.util.*;
 
 public class RentalService {
 
@@ -22,21 +22,15 @@ public class RentalService {
 		rentalVO.setrInfo(rInfo);
 		rentalVO.setrStat(rStat);
 		rentalVO.setrCatNo(rCatNo);
-		dao.insert(rentalVO);
 
+		dao.insert(rentalVO);
 		return rentalVO;
 	}
-
-//	//新增 (Spring MVC用)
-//	public void addRental(RentalVO rentalVO) {
-//		dao.insert(rentalVO);
-//	}
 	
 	//修改
 	public RentalVO updateRental(Integer rNo, String rName,BigDecimal rPrice, Integer rSize, String rColor, String rInfo, Byte rStat, Integer rCatNo) {
 
 		RentalVO rentalVO = new RentalVO();
-
 		rentalVO.setrNo(rNo);
 		rentalVO.setrName(rName);
 		rentalVO.setrPrice(rPrice);
@@ -45,18 +39,28 @@ public class RentalService {
 		rentalVO.setrInfo(rInfo);
 		rentalVO.setrStat(rStat);
 		rentalVO.setrCatNo(rCatNo);
-		dao.update(rentalVO);
 
-		return dao.findByPrimaryKey(rNo);
+		dao.update(rentalVO);
+		return rentalVO;
 	}
-	
-	//單筆取得
+
+	//刪除
+	public void deleteRental(Integer rNo) {
+		dao.delete(rNo);
+	}
+
+	//單筆查詢(PK)
 	public RentalVO getOneRental(Integer rNo) {
 		return dao.findByPrimaryKey(rNo);
 	}
 	
-	//整筆取得
+	//整筆查詢
 	public List<RentalVO> getAll() {
 		return dao.getAll();
+	}
+
+	//查詢某類別的租借品(一對多)(回傳 Set)
+	public Set<RentalVO> getRentalsByrCatNo(Integer rCatNo) {
+		return dao.getRentalsByrCatNo(rCatNo);
 	}
 }
