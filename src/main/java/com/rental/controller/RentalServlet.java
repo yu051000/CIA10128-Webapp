@@ -15,7 +15,6 @@ import com.rentalcategory.model.RentalCategoryVO;
 
 import static java.lang.System.out;
 
-@WebServlet("/RentalServlet.do")
 @MultipartConfig(fileSizeThreshold=1024*1024,maxRequestSize=5*5*1024*1024)
 public class RentalServlet extends HttpServlet {
 

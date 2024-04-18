@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.rentalcategory.model.*"%>
@@ -9,13 +9,22 @@
   pageContext.setAttribute("list",list);
 %>
 
-<!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>©Ò¦³¯²­É«~Ãş§O¸ê®Æ¬d¸ßµ²ªG</title>
+  <title>æ‰€æœ‰ç§Ÿå€Ÿå“é¡åˆ¥è³‡æ–™</title>
+
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+        crossorigin="anonymous"/>
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
   <style>
     table#table-1 {
+      width: 450px;
       background-color: #CCCCFF;
       border: 2px solid black;
       text-align: center;
@@ -30,44 +39,49 @@
       display: inline;
     }
   </style>
-
   <style>
     table {
-      width: 800px;
       background-color: white;
-      margin-top: 5px;
-      margin-bottom: 5px;
+      margin-top: 1px;
+      margin-bottom: 1px;
     }
     table, th, td {
-      border: 1px solid #CCCCFF;
+      border: 0px solid #CCCCFF;
     }
     th, td {
-      padding: 5px;
-      text-align: center;
+      padding: 1px;
     }
   </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
 <table id="table-1">
   <tr>
     <td>
-    <h3>©Ò¦³¯²­É«~Ãş§O¸ê®Æ</h3>
-    <h4><a href="<%=request.getContextPath()%>select_rentalCategory_page.jsp">¦^­º­¶</a></h4>
+      <h3>æ‰€æœ‰ç§Ÿå€Ÿå“é¡åˆ¥è³‡æ–™</h3>
+      <h4><a href="select_rentalCategory_page.jsp">å›é¦–é </a></h4>
     </td>
   </tr>
 </table>
-<table>
+<ul>
+  <li><a href='addRentalCategory.jsp'>æ–°å¢ç§Ÿå€Ÿå“é¡åˆ¥</a></li>
+</ul>
+<table id="sort-table" data-toggle="table">
+  <thead>
   <tr>
-    <th>¯²­É«~Ãş§O½s¸¹</th>
-    <th>¯²­É«~Ãş§O¦WºÙ</th>
-    <th>¯²­É«~®w¦s¼Æ¶q</th>
-    <th>¯²­É«~¤w¯²­É¼Æ¶q</th>
-    <th>©ãª÷</th>
-    <th>­×§ï</th>
-    <th>§R°£</th>
+    <th data-field="rCatNo" data-sortable="true">ç§Ÿå€Ÿå“é¡åˆ¥ç·¨è™Ÿ</th>
+    <th data-field="rCatName" data-sortable="true">ç§Ÿå€Ÿå“é¡åˆ¥åç¨±</th>
+    <th data-field="rStockQty" data-sortable="true">ç§Ÿå€Ÿå“åº«å­˜æ•¸é‡</th>
+    <th data-field="rRentedQty" data-sortable="true">ç§Ÿå€Ÿå“å·²ç§Ÿå€Ÿæ•¸é‡</th>
+    <th data-field="rDesPrice" data-sortable="true">æŠ¼é‡‘</th>
+    <th data-field="update" data-sortable="true">ä¿®æ”¹</th>
+    <th data-field="Delete" data-sortable="true">åˆªé™¤</th>
   </tr>
-  <c:forEach var="rentalCategoryVO" items="${list}">
+  </thead>
+  <%--  <%@ include file="page1.file" %>--%>
+  <%--  <c:forEach var="productVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">--%>
+  <c:forEach var="productVO" items="${list}">
     <tr>
       <td>${rentalCategoryVO.rCatNo}</td>
       <td>${rentalCategoryVO.rCatName}</td>
@@ -75,26 +89,48 @@
       <td>${rentalCategoryVO.rRentedQty}</td>
       <td>${rentalCategoryVO.rDesPrice}</td>
       <td>
-        <FORM method="post" action="<%=request.getContextPath()%>/rentalCategory.do" style="margin-bottom: 0px;">
-          <input type="submit" id="update" value="­×§ï">
-          <input type="hidden" name="rCatNo"  value="${rentalCategoryVO.rCatNo}">
-          <input type="hidden" name="action"  value="getOne_For_Update">
+
+    <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/rentalcategory/rentalCategory.do" style="margin-bottom: 0px;">
+          <input type="submit" value="ä¿®æ”¹">
+          <input type="hidden" name="rCatNo" value="${rentalCategoryVO.rCatNo}">
+          <input type="hidden" name="action" value="getOne_For_Update">
         </FORM>
       </td>
       <td>
-        <FORM method="post" action="<%=request.getContextPath()%>/rentalCategory.do" style="margin-bottom: 0px;">
-          <input type="submit" id="delete" value="§R°£">
+    <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/rentalcategory/rentalCategory.do" style="margin-bottom: 0px;">
+          <input type="submit" value="åˆªé™¤">
           <input type="hidden" name="rCatNo" value="${rentalCategoryVO.rCatNo}">
           <input type="hidden" name="action" value="delete">
-        </FORM>
+    </FORM>
       </td>
     </tr>
   </c:forEach>
 </table>
 <br>
-<ul>
-  <li><a href='addRentalCategory.jsp'>·s¼W¯²­É«~Ãş§O</a></li>
-</ul>
+<br>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+<script src="./Webapp/jquery/jquery-3.7.1.min.js"></script>
 
+  <script>
+    $(function(){
+      $("button.update").on("click", function(){ <%--é»æ“Šä¿®æ”¹æŒ‰éˆ•--%>
+        // alert("ok");  //æœ‰è§¸ç™¼
+        $(location).attr("href","<%=request.getContextPath()%>update_rentalCategory_input.jsp") <%--ç§»è‡³ä¿®æ”¹é é¢--%>
+      })
+
+      $("button.delete").on("click", function(){ <%--é»æ“Šåˆªé™¤æŒ‰éˆ•--%>
+        // alert("ok");  //æœ‰è§¸ç™¼
+          $(location).attr("href","<%=request.getContextPath()%>update_rentalCategory_input.jsp")
+      })
+    });
+  </script>
 </body>
 </html>

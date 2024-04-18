@@ -47,7 +47,7 @@
 
 <ul>
     <li>
-        <a href='<%=request.getContextPath()%>listALLRental.jsp'>查詢所有租借品</a><br><br>
+        <a href='<%=request.getContextPath()%>listAllRental.jsp'>查詢所有租借品</a><br><br>
     </li>
     <li>
         <FORM method="post" action="<%=request.getContextPath()%>/rental.do" enctype="multipart/form-data">

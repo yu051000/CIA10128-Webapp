@@ -1,26 +1,26 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
 
   <%if (rowsPerPage<rowNumber) {%>
     <%if(pageIndex>=rowsPerPage){%>
-        <A href="<%=request.getRequestURI()%>?whichPage=1">Ëá≥Á¨¨‰∏ÄÈ†Å</A>&nbsp;
-        <A href="<%=request.getRequestURI()%>?whichPage=<%=whichPage-1%>">‰∏ä‰∏ÄÈ†Å </A>&nbsp;
+        <A href="<%=request.getRequestURI()%>?whichPage=1">¶‹≤ƒ§@≠∂</A>&nbsp;
+        <A href="<%=request.getRequestURI()%>?whichPage=<%=whichPage-1%>">§W§@≠∂ </A>&nbsp;
     <%}%>
-
+  
     <%if(pageIndex<pageIndexArray[pageNumber-1]){%>
-        <A href="<%=request.getRequestURI()%>?whichPage=<%=whichPage+1%>">‰∏ã‰∏ÄÈ†Å </A>&nbsp;
-        <A href="<%=request.getRequestURI()%>?whichPage=<%=pageNumber%>">Ëá≥ÊúÄÂæå‰∏ÄÈ†Å</A>&nbsp;
+        <A href="<%=request.getRequestURI()%>?whichPage=<%=whichPage+1%>">§U§@≠∂ </A>&nbsp;
+        <A href="<%=request.getRequestURI()%>?whichPage=<%=pageNumber%>">¶‹≥Ã´·§@≠∂</A>&nbsp;
     <%}%>
-  <%}%>
+  <%}%>  
 
 <br><br>
 
   <%if (pageNumber>1) {%>
-    <FORM METHOD="post" ACTION="<%=request.getRequestURI()%>">
+    <FORM METHOD="post" ACTION="<%=request.getRequestURI()%>">   
        <select size="1" name="whichPage">
          <%for (int i=1; i<=pageNumber; i++){%>
-            <option value="<%=i%>">Ë∑≥Ëá≥Á¨¨<%=i%>È†Å
-         <%}%>
+            <option value="<%=i%>">∏ı¶‹≤ƒ<%=i%>≠∂
+         <%}%> 
        </select>
-       <input type="submit" value="Á¢∫ÂÆö" >
+       <input type="submit" value="ΩT©w" >  
     </FORM>
   <%}%>
