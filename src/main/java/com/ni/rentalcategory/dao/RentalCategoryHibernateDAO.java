@@ -14,6 +14,8 @@ public interface RentalCategoryHibernateDAO {
 
     RentalCategoryVO getByPK(Integer rCatNo); //使用PK去搜尋處理
 
+//    List<RentalOrderVo> getByName(String rCatName);
+
     List<RentalCategoryVO> getAll(); //萬用複合查詢
 
     List<RentalCategoryVO> getByCompositeQuery(Map<String, String> map); //複合查詢

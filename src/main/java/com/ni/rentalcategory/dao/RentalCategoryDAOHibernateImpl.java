@@ -193,9 +193,11 @@ public class RentalCategoryDAOHibernateImpl implements RentalCategoryHibernateDA
 
         try {
             session.beginTransaction();
+
+            //根據 currentPage 和 PAGE_MAX_RESULT（每頁最大結果數量）計算了分頁查詢時的第一條結果在數據庫中的索引位置 first
             List<RentalCategoryVO> result = session.createQuery("from RentalCategoryVO", RentalCategoryVO.class)
-                    .setFirstResult(first)
-                    .setMaxResults(PAGE_MAX_RESULT)
+                    .setFirstResult(first) //設置查詢的起始索引
+                    .setMaxResults(PAGE_MAX_RESULT) //設置每頁顯示的最大結果數量
                     .list();
             session.getTransaction().commit();
             return result;
@@ -208,15 +210,5 @@ public class RentalCategoryDAOHibernateImpl implements RentalCategoryHibernateDA
         }
         return null;
     }
-//======================= 尚待新增 =======================================//
-    //    public List<String> getUserNames() {
-//        try (Session session = sessionFactory.openSession()) {
-//            String hql = "select distinct u.name from User u where u.created > '2020-01-01'";
-//            Query<String> query = session.createQuery(hql , String.class);
-//            return query.list();
-//        }
-//    }
-
-
 }
 
