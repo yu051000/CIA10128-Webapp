@@ -1,6 +1,5 @@
 package com.ni.rentalcategory.dao;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -17,6 +16,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import static com.ni.util.Constants.PAGE_MAX_RESULT;
+import static java.lang.Byte.valueOf;
 
 public class RentalCategoryDAOHibernateImpl implements RentalCategoryHibernateDAO {  //Impl是實作類別 (企業常見)
 
@@ -126,21 +126,12 @@ public class RentalCategoryDAOHibernateImpl implements RentalCategoryHibernateDA
             // 使用for-each迴圈，檢查map集合中的每一個鍵值
             // map.entrySet()返回Set<Map.Entry<String, String>>的值。透過getKey & getValue取得鍵&值
             for (Map.Entry<String, String> row : map.entrySet()) {
-                if ("rCatName".equals(row.getKey())) { //名稱
-                    predicates.add(builder.like(root.get("rCatName"), "%" + row.getValue() + "%")); //使用like方法來建立模糊查詢
+                if ("rNo".equals(row.getKey())) { //庫存數量
+                    predicates.add(builder.equal(root.get("rNo"), row.getValue()));
                 }
 
-                if ("rStockQty".equals(row.getKey())) { //庫存數量
-                    predicates.add(builder.equal(root.get("rStockQty"), row.getValue()));
-                }
-
-                if ("rStockQty".equals(row.getKey())) { //已租借數量
-                    predicates.add(builder.equal(root.get("rStockQty"), row.getValue()));
-                }
-
-                if ("rDesPrice".equals(row.getKey())) { //押金
-                    if (!map.containsKey("rDesPrice"))
-                        predicates.add(builder.lessThanOrEqualTo(root.get("sal"), new BigDecimal(row.getValue())));
+                if ("rPic".equals(row.getKey())) { //租借品狀態
+                    predicates.add(builder.equal(root.get("rPic"), valueOf(row.getValue()))); //valueOf轉成byte物件
                 }
 
             }
