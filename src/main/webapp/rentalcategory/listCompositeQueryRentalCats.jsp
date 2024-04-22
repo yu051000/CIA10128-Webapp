@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
 <%--    <link rel="stylesheet" href="${pageContext.request.contextPath}/main/main.css">--%>
-    <title>List Emps</title>
+    <title>List RentalCats</title>
 </head>
 <body>
 <h1>員工列表</h1>

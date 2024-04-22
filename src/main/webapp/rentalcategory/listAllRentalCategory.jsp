@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
-<%@ page import="com.ni.rentalcategory.*"%>
 <%@ page import="com.ni.rentalcategory.service.RentalCategoryServiceImpl" %>
 <%@ page import="com.ni.rentalcategory.vo.RentalCategoryVO" %>
 
@@ -62,7 +61,7 @@
   <tr>
     <td>
       <h3>所有租借品類別資料</h3>
-      <h4><a href="select_rentalCategory_page.jsp">回首頁</a></h4>
+      <h4><a href="<%=request.getContextPath()%>/rentalcategory/select_rentalCategory_page.jsp">回首頁</a></h4>
     </td>
   </tr>
 </table>
@@ -92,18 +91,17 @@
       <td>${rentalCategoryVO.rRentedQty}</td>
       <td>${rentalCategoryVO.rDesPrice}</td>
 
-    <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/rentalcategory/rentalCategory.do" style="margin-bottom: 0px;">
-          <input type="submit" value="修改">
-          <input type="hidden" name="rCatNo" value="${rentalCategoryVO.rCatNo}">
-          <input type="hidden" name="action" value="getOne_For_Update">
-        </FORM>
+      <td>
+        <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/rentalcategory/rentalCategory.do" style="margin-bottom: 0px;">
+              <input type="submit" value="修改">
+              <input type="hidden" name="rCatNo" value="${rentalCategoryVO.rCatNo}">
+              <input type="hidden" name="action" value="getOne_For_Update"></FORM>
       </td>
       <td>
-    <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/rentalcategory/rentalCategory.do" style="margin-bottom: 0px;">
-          <input type="submit" value="刪除">
-          <input type="hidden" name="rCatNo" value="${rentalCategoryVO.rCatNo}">
-          <input type="hidden" name="action" value="delete">
-    </FORM>
+        <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/rentalcategory/rentalCategory.do" style="margin-bottom: 0px;">
+              <input type="submit" value="刪除">
+              <input type="hidden" name="rCatNo" value="${rentalCategoryVO.rCatNo}">
+              <input type="hidden" name="action" value="delete"></FORM>
       </td>
     </tr>
   </c:forEach>

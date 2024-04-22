@@ -4,11 +4,11 @@
 
 <%
 	RentalCategoryVO rentalCategoryVO = (RentalCategoryVO) request.getAttribute("rentalCategoryVO"); //RentalCategoryServlet.java(Controller), 存入req的rentalCategoryVO物件
+	pageContext.setAttribute("rentalCategoryVO", rentalCategoryVO);
 %>
---<%= rentalCategoryVO==null %>--${rentalCategoryVO.rCatNo}--
+
 <html>
 <head>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 	<title>租借品類別資料新增</title>
 	<style>
 		table#table-1 {
@@ -47,7 +47,7 @@
 		<tr>
 			<td>
 				<h3>租借品類別資料新增</h3>
-				<h4><a href="<%=request.getContextPath()%>select_rentalCategory_page.jsp">回首頁</a></h4>
+				<h4><a href="<%=request.getContextPath()%>/rentalcategory/select_rentalCategory_page.jsp">回首頁</a></h4>
 			</td>
 		</tr>
 	</table>
@@ -64,7 +64,7 @@
 		</ul>
 	</c:if>
 
-	<FORM method="post" action="<%=request.getContextPath()%>rentalCategory.do" name="form1" enctype="multipart/form-data">
+	<FORM method="post" action="<%=request.getContextPath()%>/rentalcategory/rentalCategory.do" name="form1" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<td>租借品類別名稱:</td>

@@ -4,6 +4,7 @@
 
 <%
     RentalCategoryVO rentalCategoryVO = (RentalCategoryVO) request.getAttribute("rentalCategoryVO"); //RentalCategoryServlet.java(Controller), 存入req的rentalCategoryVO物件
+    pageContext.setAttribute("rentalCategoryVO", rentalCategoryVO);
 %>
 
 <html>
@@ -70,12 +71,12 @@
             <td>
                 <h3>單筆查詢</h3>
                 <h3>租借品類別資料</h3>
-                <h4><a href="select_rentalCategory_page.jsp">回首頁</a></h4>
+                <h4><a href="<%=request.getContextPath()%>/rentalcategory/select_rentalCategory_page.jsp">回首頁</a></h4>
             </td>
         </tr>
     </table>
     <ul>
-        <li><a href='listAllRentalCategory.jsp'>查詢所有租借品類別</a><br></li>
+        <li><a href="<%=request.getContextPath()%>/rentalcategory/listAllRentalCategory.jsp">查詢所有租借品類別</a><br></li>
     </ul>
     <table>
         <tr>
@@ -109,22 +110,22 @@
             </td>
         </tr>
     </table>
-    <script src="./vendors/jquery/jquery-3.7.1.min.js"></script>
-    <script>
-        $(function(){
-            $("button.update").on("click", function(){ <%--點擊修改按鈕--%>
-                // alert("修改按鈕ok");
-                <%--使用jQuery的屬性替換方法轉移頁面--%>
-                $(location).attr("href","<%=request.getContextPath()%>select_rentalCategory_page.jsp")
-            })
+<%--    <script src="./vendors/jquery/jquery-3.7.1.min.js"></script>--%>
+<%--    <script>--%>
+<%--        $(function(){--%>
+<%--            $("button.update").on("click", function(){ &lt;%&ndash;點擊修改按鈕&ndash;%&gt;--%>
+<%--                // alert("修改按鈕ok");--%>
+<%--                &lt;%&ndash;使用jQuery的屬性替換方法轉移頁面&ndash;%&gt;--%>
+<%--                $(location).attr("href","<%=request.getContextPath()%>select_rentalCategory_page.jsp")--%>
+<%--            })--%>
 
-            $("button.delete").on("click", function(){ <%--點擊刪除按鈕--%>
-                // alert("刪除按鈕ok");
-                <%--使用jQuery的屬性替換方法轉移頁面--%>
-                $(location).attr("href","<%=request.getContextPath()%>select_rentalCategory_page.jsp")
-            })
-        });
-    </script>
+<%--            $("button.delete").on("click", function(){ &lt;%&ndash;點擊刪除按鈕&ndash;%&gt;--%>
+<%--                // alert("刪除按鈕ok");--%>
+<%--                &lt;%&ndash;使用jQuery的屬性替換方法轉移頁面&ndash;%&gt;--%>
+<%--                $(location).attr("href","<%=request.getContextPath()%>select_rentalCategory_page.jsp")--%>
+<%--            })--%>
+<%--        });--%>
+<%--    </script>--%>
 </body>
 </html>
 

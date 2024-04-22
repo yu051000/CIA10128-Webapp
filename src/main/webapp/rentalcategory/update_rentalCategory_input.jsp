@@ -5,6 +5,7 @@
 <%--  RentalCategoryServlet.java(Controller), 存入req的rentalCategoryVO物件  --%>
 <%
     RentalCategoryVO rentalCategoryVO = (RentalCategoryVO) request.getAttribute("rentalCategoryVO");
+    pageContext.setAttribute("rentalCategoryVO", rentalCategoryVO);
 %>
 
 <html>
@@ -50,7 +51,7 @@
         <tr>
             <td>
                 <h3>租借品類別資料修改</h3>
-                <h4><a href="select_rentalCategory_page.jsp">回首頁</a></h4>
+                <h4><a href="<%=request.getContextPath()%>/rentalcategory/select_rentalCategory_page.jsp">回首頁</a></h4>
             </td>
         </tr>
     </table>
@@ -66,7 +67,7 @@
      	</ul>
      </c:if>
 
-    <FORM METHOD="post" ACTION="rentalCategory.do" name="form1">
+    <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/rentalcategory/rentalCategory.do" name="form1">
         <table>
             <tr>
                 <td>租借品類別編號:<font color=red><b>*</b></font></td>
@@ -101,7 +102,7 @@
         </table>
         <br>
         <input type="hidden" name="action" value="update">
-        <input type="hidden" name="rCatNo" value="<%=rentalCategoryVO.getrCatNo()%>">
+        <input type="hidden" name="rCatNo" value="${rentalCategoryVO.rCatNo}">
         <input type="submit" value="送出修改"></FORM>
         <script>
             function updateRentalCategoryDetails() {
@@ -128,12 +129,6 @@
                 var requestData = 'rCatNo=' + encodeURIComponent(selectedRCatNo);
                 xhr.send(requestData);
                 }
-                </script>
-
-<tr>
-    <!-- 另兩種作法，見EmpController.java -->
-    <jsp:useBean id="deptSvc" scope="page" class="com.dept.model.DeptService" />
-    <td><form:select path="deptno" id="deptno" items="${deptSvc.all}" itemValue="deptno" itemLabel="dname" /></td>
-</tr>
+        </script>
 </body>
 </html>

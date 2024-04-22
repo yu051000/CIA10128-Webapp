@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>查詢租借品類別</title>
+    <title>首頁 - 查詢租借品類別</title>
 
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
@@ -60,21 +60,21 @@
      </c:if>
 
     <ul>
-        <li><a href='listAllRentalCategory.jsp'>查詢所有租借品類別</a><br><br></li>
-        <li><a href='addRentalCategory.jsp'>新增租借品類別</a><br><br></li>
+        <li><a href='<%=request.getContextPath()%>/rentalcategory/listAllRentalCategory.jsp'>查詢所有租借品類別</a><br><br></li>
+        <li><a href='<%=request.getContextPath()%>/rentalcategory/addRentalCategory.jsp'>新增租借品類別</a><br><br></li>
+
+        <jsp:useBean id="rentalCategorySvc" scope="page" class="com.ni.rentalcategory.service.RentalCategoryServiceImpl"/><%-- bean 物件--%>
 
         <li>
-            <FORM METHOD="post" ACTION="rentalCategory.do" enctype="multipart/form-data"><%--設置表單MIME編碼--%>
+            <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/rentalcategory/rentalCategory.do" enctype="multipart/form-data"><%--設置表單MIME編碼--%>
                 <b>輸入租借品類別編號 (如：1):</b>
                 <input type="text" name="rCatNo" value="${param.rCatNo}"><font color=red>${errorMsgs.rCatNo}</font>
                 <input type="hidden" name="action" value="getOne_For_Display">
                 <input type="submit" value="送出">
             </FORM>
         </li>
-
-        <jsp:useBean id="rentalCategorySvc" scope="page" class="com.ni.rentalcategory.service.RentalCategoryServiceImpl"/><%--指明要使用一個 bean 物件--%>
         <li>
-            <FORM METHOD="post" ACTION="rentalCategory.do" enctype="multipart/form-data">
+            <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/rentalcategory/rentalCategory.do" enctype="multipart/form-data">
                 <b>選擇租借品類別編號:</b>
                 <select size="1" name="rCatNo">
                 <c:forEach var="rentalCategoryVO" items="${rentalCategorySvc.all}">
@@ -87,7 +87,7 @@
         </li>
 
         <li>
-            <FORM METHOD="post" ACTION="rentalCategory.do" enctype="multipart/form-data">
+            <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/rentalcategory/rentalCategory.do" enctype="multipart/form-data">
                 <b>選擇租借品類別名稱:</b>
                 <select size="1" name="rCatName">
 <%--                    <option value="default">請選擇名稱</option>--%>
