@@ -1,10 +1,12 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
-<%@ page import="com.rentalcategory.model.*"%>
+<%@ page import="com.ni.rentalcategory.*"%>
+<%@ page import="com.ni.rentalcategory.service.RentalCategoryServiceImpl" %>
+<%@ page import="com.ni.rentalcategory.vo.RentalCategoryVO" %>
 
 <%
-  RentalCategoryService rentalCategorySvc = new RentalCategoryService();
+  RentalCategoryServiceImpl rentalCategorySvc = new RentalCategoryServiceImpl();
   List<RentalCategoryVO> list = rentalCategorySvc.getAll();
   pageContext.setAttribute("list",list);
 %>
@@ -64,6 +66,9 @@
     </td>
   </tr>
 </table>
+<c:if test="${pageQty > 0}">
+  <b><font color=red>第${currentPage}/${pageQty}頁</font></b>
+</c:if>
 <ul>
   <li><a href='addRentalCategory.jsp'>新增租借品類別</a></li>
 </ul>
@@ -79,16 +84,13 @@
     <th data-field="Delete" data-sortable="true">刪除</th>
   </tr>
   </thead>
-  <%--  <%@ include file="page1.file" %>--%>
-  <%--  <c:forEach var="productVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">--%>
-  <c:forEach var="productVO" items="${list}">
+  <c:forEach var="rentalCategoryVO" items="${list}">
     <tr>
       <td>${rentalCategoryVO.rCatNo}</td>
       <td>${rentalCategoryVO.rCatName}</td>
       <td>${rentalCategoryVO.rStockQty}</td>
       <td>${rentalCategoryVO.rRentedQty}</td>
       <td>${rentalCategoryVO.rDesPrice}</td>
-      <td>
 
     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/rentalcategory/rentalCategory.do" style="margin-bottom: 0px;">
           <input type="submit" value="修改">
@@ -106,6 +108,19 @@
     </tr>
   </c:forEach>
 </table>
+<c:if test="${currentPage > 1}">
+  <a href="${pageContext.request.contextPath}/rentalcategory/rentalCategory.do?action=getAll&page=1">至第一頁</a>&nbsp;
+</c:if>
+<c:if test="${currentPage - 1 != 0}">
+  <a href="${pageContext.request.contextPath}/rentalcategory/rentalCategory.do?action=getAll&page=${currentPage - 1}">上一頁</a>&nbsp;
+</c:if>
+<c:if test="${currentPage + 1 <= pageQty}">
+  <a href="${pageContext.request.contextPath}/rentalcategory/rentalCategory.do?action=getAll&page=${currentPage + 1}">下一頁</a>&nbsp;
+</c:if>
+<c:if test="${currentPage != pageQty}">
+  <a href="${pageContext.request.contextPath}/rentalcategory/rentalCategory.do?action=getAll&page=${pageQty}">至最後一頁</a>&nbsp;
+</c:if>
+<br>
 <br>
 <br>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -119,18 +134,18 @@
 <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
 <script src="./Webapp/jquery/jquery-3.7.1.min.js"></script>
 
-  <script>
-    $(function(){
-      $("button.update").on("click", function(){ <%--點擊修改按鈕--%>
-        // alert("ok");  //有觸發
-        $(location).attr("href","<%=request.getContextPath()%>update_rentalCategory_input.jsp") <%--移至修改頁面--%>
-      })
+<%--  <script>--%>
+<%--    $(function(){--%>
+<%--      $("button.update").on("click", function(){ &lt;%&ndash;點擊修改按鈕&ndash;%&gt;--%>
+<%--        // alert("ok");  //有觸發--%>
+<%--        $(location).attr("href","<%=request.getContextPath()%>update_rentalCategory_input.jsp") &lt;%&ndash;移至修改頁面&ndash;%&gt;--%>
+<%--      })--%>
 
-      $("button.delete").on("click", function(){ <%--點擊刪除按鈕--%>
-        // alert("ok");  //有觸發
-          $(location).attr("href","<%=request.getContextPath()%>update_rentalCategory_input.jsp")
-      })
-    });
-  </script>
+<%--      $("button.delete").on("click", function(){ &lt;%&ndash;點擊刪除按鈕&ndash;%&gt;--%>
+<%--        // alert("ok");  //有觸發--%>
+<%--          $(location).attr("href","<%=request.getContextPath()%>update_rentalCategory_input.jsp")--%>
+<%--      })--%>
+<%--    });--%>
+<%--  </script>--%>
 </body>
 </html>

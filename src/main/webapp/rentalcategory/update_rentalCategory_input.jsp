@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="com.rentalcategory.model.*" %>
+<%@ page import="com.ni.rentalcategory.vo.RentalCategoryVO" %>
 
 <%--  RentalCategoryServlet.java(Controller), 存入req的rentalCategoryVO物件  --%>
 <%
@@ -129,5 +129,11 @@
                 xhr.send(requestData);
                 }
                 </script>
+
+<tr>
+    <!-- 另兩種作法，見EmpController.java -->
+    <jsp:useBean id="deptSvc" scope="page" class="com.dept.model.DeptService" />
+    <td><form:select path="deptno" id="deptno" items="${deptSvc.all}" itemValue="deptno" itemLabel="dname" /></td>
+</tr>
 </body>
 </html>

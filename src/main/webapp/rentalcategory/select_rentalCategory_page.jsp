@@ -72,13 +72,12 @@
             </FORM>
         </li>
 
-        <jsp:useBean id="rentalCategorySvc" scope="page" class="com.rentalcategory.model.RentalCategoryService"/><%--指明要使用一個 bean 物件--%>
+        <jsp:useBean id="rentalCategorySvc" scope="page" class="com.ni.rentalcategory.service.RentalCategoryServiceImpl"/><%--指明要使用一個 bean 物件--%>
         <li>
             <FORM METHOD="post" ACTION="rentalCategory.do" enctype="multipart/form-data">
                 <b>選擇租借品類別編號:</b>
                 <select size="1" name="rCatNo">
-<%--                    <option value="default">請選擇編號</option>--%>
-                <c:forEach var="rentalCategoryVO" items="${rentalCategorySvc.all}"> <%--迭代操作--%>
+                <c:forEach var="rentalCategoryVO" items="${rentalCategorySvc.all}">
                     <option value="${rentalCategoryVO.rCatNo}">${rentalCategoryVO.rCatNo}
                 </c:forEach>
                 </select>
