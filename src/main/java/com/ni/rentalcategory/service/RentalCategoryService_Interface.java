@@ -8,13 +8,13 @@ import com.ni.util.Constants;
 
 public interface RentalCategoryService_Interface {
 
-    RentalCategoryVO addRentalCat(RentalCategoryVO rentalCategoryVO);
+    RentalCategoryVO addRentalCat(String rCatName, Integer rStockQty, Integer rRentedQty, BigDecimal rDesPrice);
 
-    RentalCategoryVO updateRentalCat(RentalCategoryVO rentalCategoryVO);
+    RentalCategoryVO updateRentalCat(Integer rCatNo,String rCatName, Integer rStockQty, Integer rRentedQty, BigDecimal rDesPrice);
 
     void deleteRentalCat(Integer rCatNo);
 
-    RentalCategoryVO getByPK(Integer rCatNo); //使用PK去搜尋處理
+    RentalCategoryVO getOneRentalCat(Integer rCatNo);//單筆查詢
 
     List<RentalCategoryVO> getAll();  //萬用複合查詢
 

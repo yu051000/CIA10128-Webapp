@@ -25,16 +25,29 @@ import com.ni.util.Constants;
         public RentalCategoryServiceImpl() {
             dao = new RentalCategoryDAOHibernateImpl();
         }
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// addRentalCat
         @Override
-        public RentalCategoryVO addRentalCat(RentalCategoryVO rentalCategoryVO) {
+        public RentalCategoryVO addRentalCat(String rCatName, Integer rStockQty, Integer rRentedQty, BigDecimal rDesPrice) {
 
+            RentalCategoryVO rentalCategoryVO = new RentalCategoryVO();
+            rentalCategoryVO.setrCatName(rCatName);
+            rentalCategoryVO.setrStockQty(rStockQty);
+            rentalCategoryVO.setrRentedQty(rRentedQty);
+            rentalCategoryVO.setrDesPrice(rDesPrice);
             dao.add(rentalCategoryVO);// 將VO放入DAO的方法內執行資料庫操作
+
             return rentalCategoryVO;
         }
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// updateRentalCat
         @Override
-        public RentalCategoryVO updateRentalCat(RentalCategoryVO rentalCategoryVO) {
+        public RentalCategoryVO updateRentalCat(Integer rCatNo,String rCatName, Integer rStockQty, Integer rRentedQty, BigDecimal rDesPrice) {
+
+            RentalCategoryVO rentalCategoryVO = new RentalCategoryVO();
+            rentalCategoryVO.setrCatNo(rCatNo);
+            rentalCategoryVO.setrCatName(rCatName);
+            rentalCategoryVO.setrStockQty(rStockQty);
+            rentalCategoryVO.setrRentedQty(rRentedQty);
+            rentalCategoryVO.setrDesPrice(rDesPrice);
 
             dao.update(rentalCategoryVO);
             return rentalCategoryVO;
@@ -45,8 +58,9 @@ import com.ni.util.Constants;
             dao.delete(rCatNo);
         }
 
-        @Override
-        public RentalCategoryVO getByPK(Integer rCatNo) {
+
+        @Override //單筆查詢(PK)
+        public RentalCategoryVO getOneRentalCat(Integer rCatNo) {
             return dao.getByPK(rCatNo);
         }
 
