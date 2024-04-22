@@ -1,4 +1,4 @@
-package com.rentalcategory.controller;
+package com.ni.rentalcategory.controller;
 
 import java.io.*;
 import java.math.BigDecimal;
@@ -6,24 +6,37 @@ import java.util.*;
 import javax.servlet.*;
 import com.google.gson.Gson;
 import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-import com.rentalcategory.model.*;
+import javax.servlet.annotation.WebServlet;
 
+import com.ni.rentalcategory.service.RentalCategoryService;
+import com.ni.rentalcategory.service.RentalCategoryServiceImpl;
+import com.ni.rentalcategory.service.RentalCategoryService_Interface;
+import com.ni.rentalcategory.vo.RentalCategoryVO;
+
+@WebServlet("/rentalcategory/rentalCategory.do")
 @MultipartConfig(fileSizeThreshold=1024*1024,maxRequestSize=5*5*1024*1024) //限制大小
-
 public class RentalCategoryServlet  extends HttpServlet {
+
+    // 一個 servlet 實體對應一個 service 實體
+    private RentalCategoryServlet rentalCategoryServlet;
+
+    @Override
+    public void init() throws ServletException {
+        rentalCategoryServlet = new RentalCategoryServlet();
+    }
 
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
         doPost(req, res);
     }
-    @Override
-    public void doPost(HttpServletRequest req, HttpServletResponse res)
-            throws ServletException, IOException {
 
-        req.setCharacterEncoding("UTF-8");
+    @Override
+    public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+
+        req.setCharacterEncoding("UTF-8"); //如果沒有filter過濾器統一宣告就要打
+        res.setContentType("text/html; charset=UTF-8");
         String action = req.getParameter("action");
 
         if ("getOne_For_Display".equals(action)) { // 來自select_page.jsp的請求
@@ -229,7 +242,7 @@ public class RentalCategoryServlet  extends HttpServlet {
             RentalCategoryVO rentalCategoryVO = rentalCategorySvc.getOneRentalCategory(rCatNo);
 
             if (rentalCategoryVO != null) {
-                // 将商品详细信息转换为 JSON 格式
+                // 將詳細資訊轉換成JSON格式
                 Gson gson = new Gson();
                 String json = gson.toJson(rentalCategoryVO);
 
@@ -242,6 +255,34 @@ public class RentalCategoryServlet  extends HttpServlet {
             } else {
                 res.setStatus(HttpServletResponse.SC_NOT_FOUND);
             }
+
+
+
+//            /*// 限定下拉式選單顯示的選項
+//             * 【 第二種作法 】 Method used to populate the Map Data in view.
+//             *  如 : <form:select path="deptno" id="deptno" items="${mapData}" />
+//             */
+//            @ModelAttribute("mapData") //
+//            protected Map<Integer, String> referenceMapData() {
+//                Map<Integer, String> mapData = new LinkedHashMap<Integer, String>();
+//                mapData.put(10, "財務部");
+//                mapData.put(20, "研發部");
+//                mapData.put(30, "業務部");
+//                mapData.put(40, "生管部");
+//                return mapData;
+//            }
+//
+//
+//            /*// 依據表格內資料可做下拉式選單
+////             * 第三種作法 Method used to populate the List Data in view.
+////             *  如 : <form:select path="deptno" id="deptno" items="${listData}" itemValue="deptno" itemLabel="dname" />
+////             */
+//            @ModelAttribute("listData")
+//            protected List<DeptVO> referenceListData() {
+//                DeptService deptSvc = new DeptService();
+//                List<DeptVO> listData = deptSvc.getAll();
+//                return listData;
+//            }
         }
     }
 }

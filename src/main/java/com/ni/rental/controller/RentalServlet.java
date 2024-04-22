@@ -1,17 +1,14 @@
-package com.rental.controller;
+package com.ni.rental.controller;
 
 import java.io.*;
 import java.math.BigDecimal;
 import java.util.*;
 import javax.servlet.*;
 import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-import com.rental.model.*;
-import com.rental.model.RentalService;
-import com.rental.model.RentalVO;
-import com.rentalcategory.model.RentalCategoryService;
-import com.rentalcategory.model.RentalCategoryVO;
+
+//import com.ni.rental.service.RentalService;
+//import com.ni.rental.vo.RentalVO;
 
 import static java.lang.System.out;
 
@@ -85,7 +82,7 @@ public class RentalServlet extends HttpServlet {
             rentalVO.setrColor(rColor);
             rentalVO.setrInfo(rInfo);
             rentalVO.setrStat(rStat);
-            rentalVO.setrCatNo(rCatNo);
+//            rentalVO.setrCatNo(rCatNo);
 
             // Send the use back to the form, if there were errors
             if (!errorMsgs.isEmpty()) {
@@ -188,7 +185,7 @@ public class RentalServlet extends HttpServlet {
             rentalVO.setrColor(rColor);
             rentalVO.setrInfo(rInfo);
             rentalVO.setrStat(rStat);
-            rentalVO.setrCatNo(rCatNo);
+//            rentalVO.setrCatNo(rCatNo);
 
             // Send the use back to the form, if there were errors
             if (!errorMsgs.isEmpty()) {

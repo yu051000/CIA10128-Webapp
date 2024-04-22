@@ -1,10 +1,9 @@
-package com.rentalcategory.model;
+package com.ni.rentalcategory.dao;
 
-import java.math.BigDecimal;
+import com.ni.rentalcategory.vo.RentalCategoryVO;
+
 import java.sql.*;
 import java.util.*;
-
-import static java.lang.System.out;
 
 public class RentalCategoryJDBCDAO implements RentalCategoryDAO_interface {
 

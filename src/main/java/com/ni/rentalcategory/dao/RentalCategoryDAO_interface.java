@@ -1,6 +1,7 @@
-package com.rentalcategory.model;
+package com.ni.rentalcategory.dao;
 
-import com.rental.model.RentalVO;
+import com.ni.rentalcategory.vo.RentalCategoryVO;
+
 import java.util.*;
 
 public interface RentalCategoryDAO_interface {

@@ -1,6 +1,10 @@
-package com.rentalcategory.model;
+package com.ni.rentalcategory.service;
 
-import com.rental.model.*;
+import com.ni.util.HibernateUtil;
+import com.ni.rentalcategory.dao.DAO;
+import com.ni.rentalcategory.dao.RentalCategoryDAO_interface;
+import com.ni.rentalcategory.vo.RentalCategoryVO;
+
 import java.math.BigDecimal;
 import java.util.*;
 
@@ -10,7 +14,7 @@ public class RentalCategoryService {
 
     public RentalCategoryService() {
 //        dao = new RentalCategoryJDBCDAO();
-		dao = new RentalCategoryDAO();
+		dao = new DAO();
     }
 
     // 新增商品(將前端request值放入VO由DAO執行SQL語法，並返回VO由Controller轉給View)

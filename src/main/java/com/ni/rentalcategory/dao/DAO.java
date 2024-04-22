@@ -1,4 +1,6 @@
-package com.rentalcategory.model;
+package com.ni.rentalcategory.dao;
+
+import com.ni.rentalcategory.vo.RentalCategoryVO;
 
 import java.util.*;
 import java.sql.*;
@@ -8,7 +10,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-    public class RentalCategoryDAO implements RentalCategoryDAO_interface {
+    public class DAO implements RentalCategoryDAO_interface {
 
         // 一個應用程式中,針對一個資料庫 ,共用一個DataSource即可
         private static DataSource ds = null;

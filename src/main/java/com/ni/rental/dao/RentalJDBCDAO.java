@@ -1,4 +1,6 @@
-package com.rental.model;
+package com.ni.rental.dao;
+
+import com.ni.rental.vo.RentalVO;
 
 import java.math.BigDecimal;
 import java.sql.*;
@@ -365,80 +367,5 @@ public class RentalJDBCDAO implements RentalDAO_interface{
 			}
 		}
 		return set;
-	}
-
-	//------------------------------------------------------------------------//
-	public static void main(String[] args) {
-
-		RentalJDBCDAO dao = new RentalJDBCDAO();
-
-		// insert
-		RentalVO rentalVO1 = new RentalVO();
-
-		rentalVO1.setrNo(5002);
-		rentalVO1.setrName("格紋成套西裝");
-		rentalVO1.setrPrice(new BigDecimal(10200));
-		rentalVO1.setrSize(2);
-		rentalVO1.setrColor("黑色");
-		rentalVO1.setrInfo("款式：劍領 單排釦。適用場合：婚攝 婚宴 宴客 求婚");
-		rentalVO1.setrStat((byte) 2);
-		rentalVO1.setrCatNo(9);
-		dao.insert(rentalVO1);
-
-		// update
-		RentalVO rentalVO2 = new RentalVO();
-
-		rentalVO2.setrNo(5015);
-		rentalVO2.setrName("千鳥紋西裝外套");
-		rentalVO2.setrPrice(new BigDecimal(9999));
-		rentalVO2.setrSize(4);
-		rentalVO2.setrColor("黑白紋");
-		rentalVO2.setrInfo("款式：標準領 雙排釦。適用場合：婚攝 婚宴 宴客 求婚 日常");
-		rentalVO2.setrStat((byte) 3);
-		rentalVO2.setrCatNo(7);
-		dao.update(rentalVO2);
-
-		// 刪除
-		dao.delete(5002);
-
-		// 單筆查詢(PK)
-		RentalVO rentalVO3 = dao.findByPrimaryKey(5001);
-		System.out.print(rentalVO3.getrNo() + ",");
-		System.out.print(rentalVO3.getrName() + ",");
-		System.out.print(rentalVO3.getrPrice() + ",");
-		System.out.print(rentalVO3.getrSize() + ",");
-		System.out.print(rentalVO3.getrColor() + ",");
-		System.out.print(rentalVO3.getrInfo() + ",");
-		System.out.println(rentalVO3.getrStat() + ",");
-		System.out.print(rentalVO3.getrCatNo());
-		System.out.println("---------------------");
-
-		// 查詢某個類別的租借品
-		Set<RentalVO> set = dao.getRentalsByrCatNo(1);
-		for (RentalVO a1Rental : set) {
-			System.out.print(a1Rental.getrNo() + ",");
-			System.out.print(a1Rental.getrName() + ",");
-			System.out.print(a1Rental.getrPrice() + ",");
-			System.out.print(a1Rental.getrSize() + ",");
-			System.out.print(a1Rental.getrColor() + ",");
-			System.out.print(a1Rental.getrInfo() + ",");
-			System.out.println(a1Rental.getrStat() + ",");
-			System.out.print(a1Rental.getrCatNo());
-			System.out.println("---------------------");
-
-		// 查詢全部租借品
-		List<RentalVO> list = dao.getAll();
-		for (RentalVO a2Rental : list) {
-			System.out.print(a2Rental.getrNo() + ",");
-			System.out.print(a2Rental.getrName() + ",");
-			System.out.print(a2Rental.getrPrice() + ",");
-			System.out.print(a2Rental.getrSize() + ",");
-			System.out.print(a2Rental.getrColor() + ",");
-			System.out.print(a2Rental.getrInfo() + ",");
-			System.out.println(a2Rental.getrStat() + ",");
-			System.out.print(a2Rental.getrCatNo());
-			System.out.println("---------------------");
-			}
-		}
 	}
 }

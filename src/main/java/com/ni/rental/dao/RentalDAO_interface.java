@@ -1,4 +1,6 @@
-package com.rental.model;
+package com.ni.rental.dao;
+
+import com.ni.rental.vo.RentalVO;
 
 import java.util.*;
 
