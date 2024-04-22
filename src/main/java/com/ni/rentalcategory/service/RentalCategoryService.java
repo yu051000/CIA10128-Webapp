@@ -34,7 +34,6 @@ public class RentalCategoryService {
     //修改
     public RentalCategoryVO updateRentalCategory(Integer rCatNo,String rCatName, Integer rStockQty, Integer rRentedQty, BigDecimal rDesPrice) {
 
-
         RentalCategoryVO rentalCategoryVO = new RentalCategoryVO();
 
         rentalCategoryVO.setrCatNo(rCatNo);

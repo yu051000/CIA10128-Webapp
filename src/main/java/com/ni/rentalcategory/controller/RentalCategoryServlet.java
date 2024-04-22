@@ -61,7 +61,7 @@ public class RentalCategoryServlet  extends HttpServlet {
             try {
                 rCatNo = Integer.valueOf(str);
             } catch (Exception e) {
-                errorMsgs.put("rCatNo","編號格式不正確");
+                errorMsgs.put("rCatNo", "編號格式不正確");
             }
             // Send the use back to the form, if there were errors
             if (!errorMsgs.isEmpty()) {
