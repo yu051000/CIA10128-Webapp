@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 import com.ni.rentalcategory.vo.RentalCategoryVO;
-import com.ni.util.Constants;
 
 public interface RentalCategoryService_Interface {
 
