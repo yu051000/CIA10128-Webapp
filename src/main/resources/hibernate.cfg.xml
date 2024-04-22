@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/fallelove?serverTimezone=Asia/Taipei</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">shirley24608339</property>
+
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		
+		<property name="hibernate.show_sql">true</property>
+		
+		<property name="hibernate.hbm2ddl.auto">validate</property>
+		
+		<property name="hibernate.current_session_context_class">thread</property>
+
+		<mapping class="com.ni.rental.vo.RentalVO"/>
+		<mapping class="com.ni.rentalcategory.vo.RentalCategoryVO"/>
+		<mapping class="com.ni.rentalmyfavorite.vo.RentalMyFavoriteVO"/>
+		<mapping class="com.ni.rentalpic.vo.RentalPicVO"/>
+		<mapping class="com.ni.rentalset.vo.RentSetVO"/>
+	</session-factory>
+</hibernate-configuration>
