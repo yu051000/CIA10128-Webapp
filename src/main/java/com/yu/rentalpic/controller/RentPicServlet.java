@@ -1,4 +1,4 @@
-package com.ni.rentalpic.controller;
+package com.yu.rentalpic.controller;
 
 public class RentPicServlet {
 }

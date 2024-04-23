@@ -1,4 +1,4 @@
-package com.ni.rentalset.service;
+package com.yu.rentalset.service;
 
 public class RentalSetService {
 }

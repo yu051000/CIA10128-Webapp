@@ -1,4 +1,4 @@
-package com.ni.rentalpic.service;
+package com.yu.rentalpic.service;
 
 public class RentalPicService {
 }

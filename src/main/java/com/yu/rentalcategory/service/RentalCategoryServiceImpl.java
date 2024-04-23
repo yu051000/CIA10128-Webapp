@@ -1,6 +1,6 @@
-package com.ni.rentalcategory.service;
+package com.yu.rentalcategory.service;
 
-import static com.ni.util.Constants.PAGE_MAX_RESULT;
+import static com.yu.util.Constants.PAGE_MAX_RESULT;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -8,12 +8,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.ni.rentalcategory.dao.RentalCategoryHibernateDAO;
-import com.ni.rentalcategory.dao.RentalCategoryDAOHibernateImpl;
-import com.ni.rentalcategory.vo.RentalCategoryVO;
-import com.ni.rentalcategory.service.RentalCategoryService_Interface;
-import com.ni.util.HibernateUtil;
-import com.ni.util.Constants;
+import com.yu.rentalcategory.dao.RentalCategoryHibernateDAO;
+import com.yu.rentalcategory.dao.RentalCategoryDAOHibernateImpl;
+import com.yu.rentalcategory.model.RentalCategoryVO;
+import com.yu.rentalcategory.service.RentalCategoryService_Interface;
+import com.yu.util.HibernateUtil;
+import com.yu.util.Constants;
 
 
 // 搭配 JSP / Thymeleaf 後端渲染畫面，將交易動作至於 view filter

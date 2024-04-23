@@ -1,4 +1,4 @@
-package com.ni.rentalcategory.controller;
+package com.yu.rentalcategory.controller;
 
 import java.io.*;
 import java.math.BigDecimal;
@@ -9,11 +9,11 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
-import com.ni.rentalcategory.service.RentalCategoryService;
-import com.ni.rentalcategory.service.RentalCategoryServiceImpl;
-import com.ni.rentalcategory.service.RentalCategoryService_Interface;
-import com.ni.rentalcategory.vo.RentalCategoryVO;
-import com.ni.util.Constants;
+import com.yu.rentalcategory.service.RentalCategoryService;
+import com.yu.rentalcategory.service.RentalCategoryServiceImpl;
+import com.yu.rentalcategory.service.RentalCategoryService_Interface;
+import com.yu.rentalcategory.model.RentalCategoryVO;
+import com.yu.util.Constants;
 
     @WebServlet("/rentalcategory/rentalCategory.do")
     @MultipartConfig(fileSizeThreshold=1024*1024,maxRequestSize=5*5*1024*1024) //限制大小

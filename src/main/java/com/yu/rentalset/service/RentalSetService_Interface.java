@@ -1,6 +1,6 @@
-package com.ni.rentalset.service;
+package com.yu.rentalset.service;
 
-import com.ni.rentalset.vo.RentSetVO;
+import com.yu.rentalset.model.RentSetVO;
 
 import java.util.List;
 import java.util.Map;

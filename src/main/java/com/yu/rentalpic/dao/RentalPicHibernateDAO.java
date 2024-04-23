@@ -1,6 +1,6 @@
-package com.ni.rentalpic.dao;
+package com.yu.rentalpic.dao;
 
-import com.ni.rentalpic.vo.RentalPicVO;
+import com.yu.rentalpic.model.RentalPicVO;
 
 import java.util.List;
 import java.util.Map;

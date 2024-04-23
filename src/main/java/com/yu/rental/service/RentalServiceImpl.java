@@ -1,14 +1,14 @@
-package com.ni.rental.service;
+package com.yu.rental.service;
 
-import static com.ni.util.Constants.PAGE_MAX_RESULT;
+import static com.yu.util.Constants.PAGE_MAX_RESULT;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.ni.rental.dao.RentalHibernateDAO;
-import com.ni.rental.dao.RentalDAOHibernateImpl;
-import com.ni.rental.vo.RentalVO;
+import com.yu.rental.dao.RentalHibernateDAO;
+import com.yu.rental.dao.RentalDAOHibernateImpl;
+import com.yu.rental.model.RentalVO;
 
     // 搭配 JSP / Thymeleaf 後端渲染畫面，將交易動作至於 view filter
     public class RentalServiceImpl implements RentalService_Interface {

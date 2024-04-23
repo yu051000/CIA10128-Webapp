@@ -1,9 +1,9 @@
-package com.ni.rentalcategory.service;
+package com.yu.rentalcategory.service;
 
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
-import com.ni.rentalcategory.vo.RentalCategoryVO;
+import com.yu.rentalcategory.model.RentalCategoryVO;
 
 public interface RentalCategoryService_Interface {
 

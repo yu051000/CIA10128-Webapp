@@ -1,9 +1,9 @@
-package com.ni.rentalcategory.service;
+package com.yu.rentalcategory.service;
 
-import com.ni.util.HibernateUtil;
-import com.ni.rentalcategory.dao.DAO;
-import com.ni.rentalcategory.dao.RentalCategoryDAO_interface;
-import com.ni.rentalcategory.vo.RentalCategoryVO;
+import com.yu.util.HibernateUtil;
+import com.yu.rentalcategory.dao.DAO;
+import com.yu.rentalcategory.dao.RentalCategoryDAO_interface;
+import com.yu.rentalcategory.model.RentalCategoryVO;
 
 import java.math.BigDecimal;
 import java.util.*;

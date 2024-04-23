@@ -1,4 +1,4 @@
-package com.ni.rental.dao;
+package com.yu.rental.dao;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.hibernate.Session;
-import com.ni.rental.vo.RentalVO;
-import com.ni.util.HibernateUtil;
+import com.yu.rental.model.RentalVO;
+import com.yu.util.HibernateUtil;
 import org.hibernate.SessionFactory;
 
 import javax.persistence.TypedQuery;
@@ -16,7 +16,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import static com.ni.util.Constants.PAGE_MAX_RESULT;
+import static com.yu.util.Constants.PAGE_MAX_RESULT;
 import static java.lang.Byte.valueOf;
 
 public class RentalDAOHibernateImpl implements RentalHibernateDAO {  //Impl是實作類別 (企業常見)

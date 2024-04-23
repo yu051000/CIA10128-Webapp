@@ -1,4 +1,4 @@
-package com.ni.rentalmyfavorite.controller;
+package com.yu.rentalmyfavorite.controller;
 
 public class RentalMyFavoriteServlet {
 }

@@ -1,6 +1,6 @@
-package com.ni.rental.service;
+package com.yu.rental.service;
 
-import com.ni.rental.vo.RentalVO;
+import com.yu.rental.model.RentalVO;
 import java.util.List;
 import java.util.Map;
 

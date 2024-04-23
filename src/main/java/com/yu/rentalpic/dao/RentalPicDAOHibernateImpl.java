@@ -1,13 +1,13 @@
-package com.ni.rentalpic.dao;
+package com.yu.rentalpic.dao;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.ni.rentalpic.vo.RentalPicVO;
+import com.yu.rentalpic.model.RentalPicVO;
 import org.hibernate.Session;
-import com.ni.util.HibernateUtil;
+import com.yu.util.HibernateUtil;
 import org.hibernate.query.NativeQuery;
 
 import javax.persistence.TypedQuery;
@@ -16,7 +16,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import static com.ni.util.Constants.PAGE_MAX_RESULT;
+import static com.yu.util.Constants.PAGE_MAX_RESULT;
 import static java.lang.Byte.valueOf;
 
     public class RentalPicDAOHibernateImpl implements RentalPicHibernateDAO {  //Impl是實作類別 (企業常見)

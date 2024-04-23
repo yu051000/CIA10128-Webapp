@@ -1,7 +1,7 @@
-package com.ni.rentalmyfavorite.dao;
+package com.yu.rentalmyfavorite.dao;
 
-import com.ni.rentalmyfavorite.vo.RentalMyFavoriteVO;
-import com.ni.util.HibernateUtil;
+import com.yu.rentalmyfavorite.model.RentalMyFavoriteVO;
+import com.yu.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.query.NativeQuery;
 
@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.sql.Date;
 
-import static com.ni.util.Constants.PAGE_MAX_RESULT;
+import static com.yu.util.Constants.PAGE_MAX_RESULT;
 
 public class RentalMyFavoriteDAOHibernateImpl implements RentalMyFavoriteHibernateDAO {
     @Override

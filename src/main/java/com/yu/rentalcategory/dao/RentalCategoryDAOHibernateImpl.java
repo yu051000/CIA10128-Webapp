@@ -1,12 +1,12 @@
-package com.ni.rentalcategory.dao;
+package com.yu.rentalcategory.dao;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import org.hibernate.Session;
-import com.ni.rentalcategory.vo.RentalCategoryVO;
-import com.ni.util.HibernateUtil;
+import com.yu.rentalcategory.model.RentalCategoryVO;
+import com.yu.util.HibernateUtil;
 import org.hibernate.query.NativeQuery;
 
 import javax.persistence.TypedQuery;

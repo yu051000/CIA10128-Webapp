@@ -1,6 +1,6 @@
-package com.ni.rentalmyfavorite.service;
+package com.yu.rentalmyfavorite.service;
 
-import com.ni.rentalmyfavorite.vo.RentalMyFavoriteVO;
+import com.yu.rentalmyfavorite.model.RentalMyFavoriteVO;
 
 import java.sql.Timestamp;
 import java.util.List;

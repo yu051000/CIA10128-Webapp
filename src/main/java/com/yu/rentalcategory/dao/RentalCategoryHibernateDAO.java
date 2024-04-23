@@ -1,8 +1,8 @@
-package com.ni.rentalcategory.dao;
+package com.yu.rentalcategory.dao;
 
 import java.util.Map;
 import java.util.List;
-import com.ni.rentalcategory.vo.RentalCategoryVO;
+import com.yu.rentalcategory.model.RentalCategoryVO;
 
 public interface RentalCategoryHibernateDAO {
 

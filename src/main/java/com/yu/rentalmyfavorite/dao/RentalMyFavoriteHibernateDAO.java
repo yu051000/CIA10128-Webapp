@@ -1,6 +1,6 @@
-package com.ni.rentalmyfavorite.dao;
+package com.yu.rentalmyfavorite.dao;
 
-import com.ni.rentalmyfavorite.vo.RentalMyFavoriteVO;
+import com.yu.rentalmyfavorite.model.RentalMyFavoriteVO;
 
 import java.util.List;
 import java.util.Map;

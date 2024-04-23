@@ -1,7 +1,7 @@
-package com.ni.rentalset.dao;
+package com.yu.rentalset.dao;
 
-import com.ni.rentalset.vo.RentSetVO;
-import com.ni.util.HibernateUtil;
+import com.yu.rentalset.model.RentSetVO;
+import com.yu.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.query.NativeQuery;
 
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static com.ni.util.Constants.PAGE_MAX_RESULT;
+import static com.yu.util.Constants.PAGE_MAX_RESULT;
 import static java.lang.Byte.valueOf;
 
 public class RentSetDAOHibernateImpl implements RentSetHibernateDAO {

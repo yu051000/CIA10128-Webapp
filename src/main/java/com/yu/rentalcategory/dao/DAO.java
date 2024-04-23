@@ -1,6 +1,6 @@
-package com.ni.rentalcategory.dao;
+package com.yu.rentalcategory.dao;
 
-import com.ni.rentalcategory.vo.RentalCategoryVO;
+import com.yu.rentalcategory.model.RentalCategoryVO;
 
 import java.util.*;
 import java.sql.*;
