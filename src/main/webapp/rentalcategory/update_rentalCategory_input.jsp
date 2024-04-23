@@ -1,8 +1,8 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="com.ni.rentalcategory.vo.RentalCategoryVO" %>
+<%@ page import="com.yu.rentalcategory.model.RentalCategoryVO"%>
 
-<%--  RentalCategoryServlet.java(Controller), ¦s¤JreqªºrentalCategoryVOª«¥ó  --%>
+<%--  RentalCategoryServlet.java(Controller), å­˜å…¥reqçš„rentalCategoryVOç‰©ä»¶  --%>
 <%
     RentalCategoryVO rentalCategoryVO = (RentalCategoryVO) request.getAttribute("rentalCategoryVO");
     pageContext.setAttribute("rentalCategoryVO", rentalCategoryVO);
@@ -10,8 +10,8 @@
 
 <html>
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>¯²­É«~Ãş§O¸ê®Æ­×§ï</title>
+    <meta charset="UTF-8">
+    <title>ç§Ÿå€Ÿå“é¡åˆ¥è³‡æ–™ä¿®æ”¹</title>
     <style>
         table#table-1 {
             width: 450px;
@@ -50,16 +50,16 @@
 <table id="table-1">
         <tr>
             <td>
-                <h3>¯²­É«~Ãş§O¸ê®Æ­×§ï</h3>
-                <h4><a href="<%=request.getContextPath()%>/rentalcategory/select_rentalCategory_page.jsp">¦^­º­¶</a></h4>
+                <h3>ç§Ÿå€Ÿå“é¡åˆ¥è³‡æ–™ä¿®æ”¹</h3>
+                <h4><a href="<%=request.getContextPath()%>/rentalcategory/select_rentalCategory_page.jsp">å›é¦–é </a></h4>
             </td>
         </tr>
     </table>
-    <h3>¸ê®Æ­×§ï:</h3>
+    <h3>è³‡æ–™ä¿®æ”¹:</h3>
 
-    <%-- ¿ù»~ªí¦C --%>
+    <%-- éŒ¯èª¤è¡¨åˆ— --%>
      <c:if test="${not empty errorMsgs}">
-    	<font style="color:red">½Ğ­×¥¿¥H¤U¿ù»~:</font>
+    	<font style="color:red">è«‹ä¿®æ­£ä»¥ä¸‹éŒ¯èª¤:</font>
     	<ul>
      		<c:forEach var="message" items="${errorMsgs}">
      			<li style="color:red">${message.value}</li>
@@ -70,7 +70,7 @@
     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/rentalcategory/rentalCategory.do" name="form1">
         <table>
             <tr>
-                <td>¯²­É«~Ãş§O½s¸¹:<font color=red><b>*</b></font></td>
+                <td>ç§Ÿå€Ÿå“é¡åˆ¥ç·¨è™Ÿ:<font color=red><b>*</b></font></td>
                 <td>
                     <select size="1" name="rentalCategorySelect" id="rentalCategorySelect" onchange="updateRentalCategoryDetails()">
                         <c:forEach var="rentalCategoryVO" items="${rentalCategorySvc.all}">
@@ -80,30 +80,30 @@
                 </td>
             </tr>
             <tr>
-                <td>¯²­É«~Ãş§O¦WºÙ:</td>
+                <td>ç§Ÿå€Ÿå“é¡åˆ¥åç¨±:</td>
                 <td><input type="TEXT" name="rCatName" id="rCatName"
-                           value="<%= (rentalCategoryVO == null)? "¦è¸Ë" : rentalCategoryVO.getrCatName() %>" size="45"/></td>
+                           value="<%= (rentalCategoryVO == null)? "è¥¿è£" : rentalCategoryVO.getrCatName() %>" size="45"/></td>
             </tr>
             <tr>
-                <td>¯²­É«~®w¦s¼Æ¶q:</td>
+                <td>ç§Ÿå€Ÿå“åº«å­˜æ•¸é‡:</td>
                 <td><input type="TEXT" name="rStockQty" id="rStockQty"
                            value="<%= (rentalCategoryVO == null)? "1" : rentalCategoryVO.getrStockQty() %>" size="45"/></td>
             </tr>
             <tr>
-                <td>¯²­É«~¤w¯²­É¼Æ¶q:</td>
+                <td>ç§Ÿå€Ÿå“å·²ç§Ÿå€Ÿæ•¸é‡:</td>
                 <td><input type="TEXT" name="rRentedQty" id="rRentedQty"
                            value="<%= (rentalCategoryVO == null)? "1" : rentalCategoryVO.getrRentedQty() %>" size="45"/></td>
             </tr>
             <tr>
-                <td>©ãª÷:</td>
+                <td>æŠ¼é‡‘:</td>
                 <td><input type="TEXT" name="rDesPrice" id="rDesPrice"
-                           value="<%= (rentalCategoryVO == null)? "ÂÅ¦â" : rentalCategoryVO.getrDesPrice() %>" size="45"/></td>
+                           value="<%= (rentalCategoryVO == null)? "è—è‰²" : rentalCategoryVO.getrDesPrice() %>" size="45"/></td>
             </tr>
         </table>
         <br>
         <input type="hidden" name="action" value="update">
         <input type="hidden" name="rCatNo" value="${rentalCategoryVO.rCatNo}">
-        <input type="submit" value="°e¥X­×§ï"></FORM>
+        <input type="submit" value="é€å‡ºä¿®æ”¹"></FORM>
         <script>
             function updateRentalCategoryDetails() {
                 var selectedRCatNo = document.getElementById('rentalCategorySelect').value;
@@ -112,7 +112,7 @@
                 xhr.open('post', 'rentalCategory.do?action=getRentalCategoryDetails', true);
                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-                <%-- ·í¦øªA¾¹¦^¶ÇÅTÀ³®É¡A¦pªGÅTÀ³ªºª¬ºA½X¬°200¡]§Y¦¨¥\¡^¡A¥¦·|¸ÑªRJSON®æ¦¡ªº¦^À³¡AµM«á±N¯²¸îÃş§Oªº¸Ô²Ó¸ê°T§ó·s¨ìºô­¶¤Wªº¹ïÀ³¤¸¯À¤¤--%>
+                <%-- ç•¶ä¼ºæœå™¨å›å‚³éŸ¿æ‡‰æ™‚ï¼Œå¦‚æœéŸ¿æ‡‰çš„ç‹€æ…‹ç¢¼ç‚º200ï¼ˆå³æˆåŠŸï¼‰ï¼Œå®ƒæœƒè§£æJSONæ ¼å¼çš„å›æ‡‰ï¼Œç„¶å¾Œå°‡ç§Ÿè³ƒé¡åˆ¥çš„è©³ç´°è³‡è¨Šæ›´æ–°åˆ°ç¶²é ä¸Šçš„å°æ‡‰å…ƒç´ ä¸­--%>
                 xhr.onload = function () {
                     if (xhr.status === 200) {
                         var rentalCategoryDetails = JSON.parse(xhr.responseText);

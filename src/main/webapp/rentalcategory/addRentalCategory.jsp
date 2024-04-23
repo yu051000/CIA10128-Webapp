@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="com.ni.rentalcategory.vo.RentalCategoryVO" %>
+<%@ page import="com.yu.rentalcategory.model.RentalCategoryVO"%>
 
 <%
 	RentalCategoryVO rentalCategoryVO = (RentalCategoryVO) request.getAttribute("rentalCategoryVO"); //RentalCategoryServlet.java(Controller), 存入req的rentalCategoryVO物件
@@ -9,6 +9,7 @@
 
 <html>
 <head>
+	<meta charset="UTF-8">
 	<title>租借品類別資料新增</title>
 	<style>
 		table#table-1 {

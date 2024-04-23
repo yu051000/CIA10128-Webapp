@@ -1,5 +1,6 @@
 package com.yu.rentalcategory.dao;
 
+import java.math.BigDecimal;
 import java.util.Map;
 import java.util.List;
 import com.yu.rentalcategory.model.RentalCategoryVO;
@@ -14,7 +15,9 @@ public interface RentalCategoryHibernateDAO {
 
     RentalCategoryVO getByPK(Integer rCatNo); //使用PK去搜尋處理
 
-//    List<RentalVO> getByName(String rCatName);
+    RentalCategoryVO getByName(String rCatName); //搜尋類別名稱
+
+    RentalCategoryVO getByDesPrice(BigDecimal rDesPrice); //搜尋押金
 
     List<RentalCategoryVO> getAll(); //萬用複合查詢
 

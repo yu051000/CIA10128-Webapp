@@ -4,18 +4,13 @@ import java.io.*;
 import java.math.BigDecimal;
 import java.util.*;
 import javax.servlet.*;
-import com.google.gson.Gson;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
-import com.yu.rentalcategory.service.RentalCategoryService;
 import com.yu.rentalcategory.service.RentalCategoryServiceImpl;
-import com.yu.rentalcategory.service.RentalCategoryService_Interface;
 import com.yu.rentalcategory.model.RentalCategoryVO;
-import com.yu.util.Constants;
 
-    @WebServlet("/rentalcategory/rentalCategory.do")
     @MultipartConfig(fileSizeThreshold=1024*1024,maxRequestSize=5*5*1024*1024) //限制大小
     public class RentalCategoryServletHB extends HttpServlet {
 
@@ -34,7 +29,7 @@ import com.yu.util.Constants;
 
         @Override
         protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-            req.setCharacterEncoding("UTF-8");  //如果沒有filter過濾器統一宣告就要打
+//            req.setCharacterEncoding("UTF-8");  //如果沒有filter過濾器統一宣告就要打
             String action = req.getParameter("action");
             res.setContentType("text/html; charset=UTF-8");
 
@@ -68,7 +63,7 @@ import com.yu.util.Constants;
             } catch (NumberFormatException e) {
                 errorMsgs.put("rCatNo", "租借品類別編號 : 請填數字!");
             } catch (NullPointerException nullPointerException) {
-                errorMsgs.put("rCatNo", "租借品類別編號 : 不能空白!");
+                errorMsgs.put("rCatNo", "租借品類別編號 : 請勿空白");
             }
 
             String rCatName = req.getParameter("rCatName");
@@ -131,6 +126,7 @@ import com.yu.util.Constants;
                 successView.forward(req, res);
             }
         }
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// update
         private void update(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
             //設定錯誤處理訊息
@@ -202,6 +198,7 @@ import com.yu.util.Constants;
                 successView.forward(req, res);
             }
         }
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// delete
         private void delete(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
             //設定錯誤處理訊息
@@ -235,13 +232,13 @@ import com.yu.util.Constants;
             // ------------------ 1.接收請求參數 - 輸入格式的錯誤處理 ------------------ //
             Integer rCatNo = Integer.valueOf(req.getParameter("rCatNo"));
 
-            String rCatName = req.getParameter("rCatName");
-
-            Integer rStockQty = Integer.valueOf(req.getParameter("rStockQty"));
-
-            Integer rRentedQty = Integer.valueOf(req.getParameter("rRentedQty"));
-
-            BigDecimal rDesPrice = new BigDecimal(req.getParameter("rDesPrice"));
+//            String rCatName = req.getParameter("rCatName");
+//
+//            Integer rStockQty = Integer.valueOf(req.getParameter("rStockQty"));
+//
+//            Integer rRentedQty = Integer.valueOf(req.getParameter("rRentedQty"));
+//
+//            BigDecimal rDesPrice = new BigDecimal(req.getParameter("rDesPrice"));
 
             // ------------------ 2.開始查詢資料 ------------------ //
             RentalCategoryVO rentalCategoryVO = rentalCategoryServiceImpl.getOneRentalCat(rCatNo);
@@ -327,5 +324,6 @@ import com.yu.util.Constants;
             //無論是否進行了複合查詢，該方法都會將結果存儲在請求屬性中，並返回指定頁面
             return "/rentalcategory/listCompositeQueryRentalCats.jsp";
         }
+
     }
 

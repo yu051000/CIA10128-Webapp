@@ -1,4 +1,4 @@
-package filters;
+package filter;
 
 import java.io.*;
 import javax.servlet.*;
@@ -16,12 +16,12 @@ public class SetCharacterEncodingFilter implements Filter {
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response,
-			FilterChain chain) throws IOException, ServletException {
+						 FilterChain chain) throws IOException, ServletException {
 
-		// ¨Ï¥Î Filter ¸Ñ¨M Query String ¤§½s½X°İÃD
-		// request.setCharacterEncoding("¯S©wªº¦r½X¶°");
+		// ä½¿ç”¨ Filter è§£æ±º Query String ä¹‹ç·¨ç¢¼å•é¡Œ
+		// request.setCharacterEncoding("ç‰¹å®šçš„å­—ç¢¼é›†");
 		request.setCharacterEncoding(encoding);
-		// ±Nµ{¦¡±±¨îÅv¥æµ¹«áÄòªº¹LÂo¾¹
+		// å°‡ç¨‹å¼æ§åˆ¶æ¬Šäº¤çµ¦å¾ŒçºŒçš„éæ¿¾å™¨
 		chain.doFilter(request, response);
 	}
 

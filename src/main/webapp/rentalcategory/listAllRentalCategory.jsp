@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
-<%@ page import="com.ni.rentalcategory.service.RentalCategoryServiceImpl" %>
-<%@ page import="com.ni.rentalcategory.vo.RentalCategoryVO" %>
+<%@ page import="com.yu.rentalcategory.service.RentalCategoryServiceImpl" %>
+<%@ page import="com.yu.rentalcategory.model.RentalCategoryVO"%>
 
 <%
   RentalCategoryServiceImpl rentalCategorySvc = new RentalCategoryServiceImpl();
@@ -12,6 +12,7 @@
 
 <html>
 <head>
+  <meta charset="UTF-8">
   <title>所有租借品類別資料</title>
 
   <link rel="stylesheet"

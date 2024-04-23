@@ -13,7 +13,11 @@ public interface RentalCategoryService_Interface {
 
     void deleteRentalCat(Integer rCatNo);
 
-    RentalCategoryVO getOneRentalCat(Integer rCatNo);//單筆查詢
+    RentalCategoryVO getOneRentalCat(Integer rCatNo);//單筆查詢(PK)
+
+    RentalCategoryVO getOneRentalCatName(String rCatName); //單筆查詢(類別名稱)
+
+    RentalCategoryVO getOneRentalrDesPrice(BigDecimal rDesPrice); //單筆查詢(押金)
 
     List<RentalCategoryVO> getAll();  //萬用複合查詢
 

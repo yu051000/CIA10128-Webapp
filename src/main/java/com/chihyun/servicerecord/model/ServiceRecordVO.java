@@ -5,7 +5,6 @@ import com.ren.administrator.model.AdministratorVO;
 import com.roger.member.model.MemberVO;
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Set;
 

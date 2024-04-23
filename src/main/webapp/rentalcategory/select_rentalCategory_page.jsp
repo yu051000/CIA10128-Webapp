@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>���� - �d�߯��ɫ~���O</title>
+    <title>首頁 - 查詢租借品類別</title>
 
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
@@ -42,61 +42,60 @@
 <table id="table-1">
         <tr>
             <td>
-                <h3>���ɫ~���OHome</h3><h4>( MVC )</h4>
+                <h3>租借品類別Home</h3><h4>( MVC )</h4>
             </td>
         </tr>
     </table>
 
-    <h3>��Ƭd��:</h3>
+    <h3>資料查詢:</h3>
 
-    <%-- ���~���C --%>
+    <%-- 錯誤表列 --%>
      <c:if test="${not empty errorMsgs}">
-        <font style="color:red">�Эץ��H�U���~:</font>
+        <font style="color:red">請修正以下錯誤:</font>
         <ul>
             <c:forEach var="message" items="${errorMsgs}">
                 <li style="color:red">${message.value}</li>
             </c:forEach>
         </ul>
      </c:if>
-
     <ul>
-        <li><a href='<%=request.getContextPath()%>/rentalcategory/listAllRentalCategory.jsp'>�d�ߩҦ����ɫ~���O</a><br><br></li>
-        <li><a href='<%=request.getContextPath()%>/rentalcategory/addRentalCategory.jsp'>�s�W���ɫ~���O</a><br><br></li>
+        <li><a href='<%=request.getContextPath()%>/rentalcategory/listAllRentalCategory.jsp'>查詢所有租借品類別</a><br><br></li>
+        <li><a href='<%=request.getContextPath()%>/rentalcategory/addRentalCategory.jsp'>新增租借品類別</a><br><br></li>
 
-        <jsp:useBean id="rentalCategorySvc" scope="page" class="com.ni.rentalcategory.service.RentalCategoryServiceImpl"/><%-- bean ����--%>
+        <jsp:useBean id="rentalCategorySvc" scope="page" class="com.yu.rentalcategory.service.RentalCategoryServiceImpl"/><%-- bean 物件--%>
 
-        <li>
-            <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/rentalcategory/rentalCategory.do" enctype="multipart/form-data"><%--�]�m����MIME�s�X--%>
-                <b>��J���ɫ~���O�s�� (�p�G1):</b>
-                <input type="text" name="rCatNo" value="${param.rCatNo}"><font color=red>${errorMsgs.rCatNo}</font>
-                <input type="hidden" name="action" value="getOne_For_Display">
-                <input type="submit" value="�e�X">
-            </FORM>
-        </li>
+<%--        <li>--%>
+<%--            <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/rentalcategory/rentalCategory.do" enctype="multipart/form-data">&lt;%&ndash;設置表單MIME編碼&ndash;%&gt;--%>
+<%--                <b>輸入租借品類別編號 (如：1):</b>--%>
+<%--                <input type="text" name="rCatNo" value="${param.rCatNo}"><font color=red>${errorMsgs.rCatNo}</font>--%>
+<%--                <input type="hidden" name="action" value="getOne_For_Display">--%>
+<%--                <input type="submit" value="送出">--%>
+<%--            </FORM>--%>
+<%--        </li>--%>
         <li>
             <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/rentalcategory/rentalCategory.do" enctype="multipart/form-data">
-                <b>��ܯ��ɫ~���O�s��:</b>
+                <b>選擇租借品類別編號:</b>
                 <select size="1" name="rCatNo">
                 <c:forEach var="rentalCategoryVO" items="${rentalCategorySvc.all}">
                     <option value="${rentalCategoryVO.rCatNo}">${rentalCategoryVO.rCatNo}
                 </c:forEach>
                 </select>
                 <input type="hidden" name="action" value="getOne_For_Display">
-                <input type="submit" value="�e�X">
+                <input type="submit" value="送出">
             </FORM>
         </li>
 
         <li>
             <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/rentalcategory/rentalCategory.do" enctype="multipart/form-data">
-                <b>��ܯ��ɫ~���O�W��:</b>
+                <b>選擇租借品類別名稱:</b>
                 <select size="1" name="rCatName">
-<%--                    <option value="default">�п�ܦW��</option>--%>
-                    <c:forEach var="rentalCategoryVO" items="${rentalCategorySvc.all}"> <%--���N�ާ@--%>
+                    <option value="default">請選擇名稱</option>
+                    <c:forEach var="rentalCategoryVO" items="${rentalCategorySvc.all}"> <%--迭代操作--%>
                         <option value="${rentalCategoryVO.rCatNo}">${rentalCategoryVO.rCatName}
                     </c:forEach>
                 </select>
                 <input type="hidden" name="action" value="getOne_For_Display">
-                <input type="submit" value="�e�X">
+                <input type="submit" value="送出">
             </FORM>
         </li>
     </ul>

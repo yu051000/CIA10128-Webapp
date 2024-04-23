@@ -4,7 +4,6 @@ import com.chihyun.servicerecord.model.ServiceRecordVO;
 import com.firesnoopy.studioorder.model.StudioOrderVO;
 import com.ren.title.model.TitleVO;
 import com.roger.columnarticle.model.ColumnArticleVO;
-import com.roger.member.model.MemberVO;
 import com.roger.report.model.ReportVO;
 
 import javax.persistence.*;

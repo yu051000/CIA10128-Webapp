@@ -106,6 +106,16 @@ import com.yu.util.Constants;
             int pageQty = (int)(total % PAGE_MAX_RESULT == 0 ? (total / PAGE_MAX_RESULT) : (total / PAGE_MAX_RESULT + 1));
             return pageQty;
         }
-
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// getOneRentalCatName
+    @Override
+    public RentalCategoryVO getOneRentalCatName(String rCatName) {
+        return dao.getByName(rCatName);
     }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// getOneRentalrDesPrice
+    @Override
+    public RentalCategoryVO getOneRentalrDesPrice(BigDecimal rDesPrice) {
+        return dao.getByDesPrice(rDesPrice);
+    }
+}
 

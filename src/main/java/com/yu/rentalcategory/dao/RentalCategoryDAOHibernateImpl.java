@@ -1,5 +1,6 @@
 package com.yu.rentalcategory.dao;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -15,11 +16,12 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import static com.ni.util.Constants.PAGE_MAX_RESULT;
+import static com.yu.util.Constants.PAGE_MAX_RESULT;
 import static java.lang.Byte.valueOf;
 
 public class RentalCategoryDAOHibernateImpl implements RentalCategoryHibernateDAO {  //Impl是實作類別 (企業常見)
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// add
     @Override
     public int add(RentalCategoryVO rentalCategoryVO) {
 
@@ -38,6 +40,7 @@ public class RentalCategoryDAOHibernateImpl implements RentalCategoryHibernateDA
         return -1;
     }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// update
     @Override
     public int update(RentalCategoryVO rentalCategoryVO) {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -54,6 +57,7 @@ public class RentalCategoryDAOHibernateImpl implements RentalCategoryHibernateDA
         return -1;
     }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// delete
     @Override
     public int delete(Integer rCatNo) {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -73,6 +77,7 @@ public class RentalCategoryDAOHibernateImpl implements RentalCategoryHibernateDA
         return -1;
     }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// getByPK
     @Override
     public RentalCategoryVO getByPK(Integer rCatNo) {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -89,6 +94,7 @@ public class RentalCategoryDAOHibernateImpl implements RentalCategoryHibernateDA
         return null;
     }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// getAll
     @Override //查詢全部(回傳List集合)
     public List<RentalCategoryVO> getAll() {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -105,7 +111,7 @@ public class RentalCategoryDAOHibernateImpl implements RentalCategoryHibernateDA
         return null;
     }
 
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// getByCompositeQuery
     // 複合查詢
     @Override
     public List<RentalCategoryVO> getByCompositeQuery(Map<String, String> map) {
@@ -156,6 +162,7 @@ public class RentalCategoryDAOHibernateImpl implements RentalCategoryHibernateDA
         return null;
     }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// getPageTotal
     @Override
     public int getPageTotal() {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -177,6 +184,7 @@ public class RentalCategoryDAOHibernateImpl implements RentalCategoryHibernateDA
         return -1;
     }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// getAllRentalCats
     @Override
     public List<RentalCategoryVO> getAllRentalCats(int currentPage) {  //設定分頁
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -201,5 +209,39 @@ public class RentalCategoryDAOHibernateImpl implements RentalCategoryHibernateDA
         }
         return null;
     }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// getByName
+    @Override
+    public RentalCategoryVO getByName(String rCatName) {
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        try {
+            session.beginTransaction();
+            RentalCategoryVO rentalCategoryVO= session.get(RentalCategoryVO.class, rCatName);
+            session.getTransaction().commit();
+            return rentalCategoryVO;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            session.getTransaction().rollback();
+        }
+        return null;
+    }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// getByDesPrice
+    @Override
+    public RentalCategoryVO getByDesPrice(BigDecimal rDesPrice) {
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        try {
+            session.beginTransaction();
+            RentalCategoryVO rentalCategoryVO= session.get(RentalCategoryVO.class, rDesPrice);
+            session.getTransaction().commit();
+            return rentalCategoryVO;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            session.getTransaction().rollback();
+        }
+        return null;
+    }
+
 }
 
