@@ -7,7 +7,7 @@ import java.util.Map;
 
 public interface RentalHibernateDAO {
 
-    int add(RentalVO rentalVO);  //若是使用Boolean，即可判斷是否有新增成功
+    int insert(RentalVO rentalVO);  //若是使用Boolean，即可判斷是否有新增成功
 
     int update(RentalVO rentalVO); //修改
 
@@ -23,5 +23,5 @@ public interface RentalHibernateDAO {
 
     List<RentalVO> getAllRentals(int currentPage); //查詢當前頁面
 
-    int getPageTotal();
+    long getPageTotal();
 }

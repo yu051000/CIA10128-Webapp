@@ -17,11 +17,48 @@
 		<property name="hibernate.current_session_context_class">thread</property>
 
 		<property name="hibernate.format_sql">true</property>
-		
-		<mapping class="com.ni.rental.vo.RentalVO"/>
-		<mapping class="com.ni.rentalcategory.vo.RentalCategoryVO"/>
-		<mapping class="com.ni.rentalmyfavorite.vo.RentalMyFavoriteVO"/>
-		<mapping class="com.ni.rentalpic.vo.RentalPicVO"/>
-		<mapping class="com.ni.rentalset.vo.RentSetVO"/>
+
+		<!-- chihyun -->
+		<mapping class="com.chihyun.coupon.model.CouponVO"/>
+		<mapping class="com.chihyun.mycoupon.model.MyCouponVO"/>
+		<mapping class="com.chihyun.news.model.NewsVO"/>
+		<mapping class="com.chihyun.servicepicture.model.ServicePictureVO"/>
+		<mapping class="com.chihyun.servicerecord.model.ServiceRecordVO"/>
+		<mapping class="com.chihyun.servicerobot.model.ServiceRobotVO"/>
+		<!-- firesnoopy -->
+		<mapping class="com.firesnoopy.studioinfo.model.StudioInfoVO"/>
+		<mapping class="com.firesnoopy.studioorder.model.StudioOrderVO"/>
+		<mapping class="com.firesnoopy.studiotimebooking.model.StudioTimeBookingVO"/>
+		<!-- howard -->
+		<mapping class="com.howard.rentalmytrack.model.RentalMyTrackVO"/>
+		<mapping class="com.howard.rentalorder.model.RentalOrderVO"/>
+		<mapping class="com.howard.rentalorderdetails.model.RentalOrderDetailsVO"/>
+		<!-- iting -->
+		<mapping class="com.iting.cart.model.CartVO"/>
+		<mapping class="com.iting.productmyfavorite.model.ProductMyFavoriteVO"/>
+		<mapping class="com.iting.productorder.model.ProductOrderVO"/>
+		<mapping class="com.iting.productorderdetail.model.ProductOrderDetailVO"/>
+		<mapping class="com.iting.productpicture.model.ProductPictureVO"/>
+		<!-- ren -->
+		<mapping class="com.ren.admauthority.model.AdmAuthorityVO"/>
+		<mapping class="com.ren.administrator.model.AdministratorVO"/>
+		<mapping class="com.ren.authorityfunction.model.AuthorityFunctionVO"/>
+		<mapping class="com.ren.title.model.TitleVO"/>
+		<mapping class="com.ren.product.model.ProductVO"/>
+		<mapping class="com.ren.productcategory.model.ProductCategoryVO"/>
+		<!-- roger -->
+		<mapping class="com.roger.articlecollection.model.ArticleCollectionVO"/>
+		<mapping class="com.roger.clicklike.model.ClickLikeVO"/>
+		<mapping class="com.roger.columnarticle.model.ColumnArticleVO"/>
+		<mapping class="com.roger.columnreply.model.ColumnReplyVO"/>
+		<mapping class="com.roger.member.model.MemberVO"/>
+		<mapping class="com.roger.notice.model.NoticeVO"/>
+		<mapping class="com.roger.report.model.ReportVO"/>
+		<!-- yu -->
+		<mapping class="com.yu.rental.model.RentalVO"/>
+		<mapping class="com.yu.rentalcategory.model.RentalCategoryVO"/>
+		<mapping class="com.yu.rentalmyfavorite.model.RentalMyFavoriteVO"/>
+		<mapping class="com.yu.rentalpic.model.RentalPicVO"/>
+		<mapping class="com.yu.rentalset.model.RentSetVO"/>
 	</session-factory>
 </hibernate-configuration>

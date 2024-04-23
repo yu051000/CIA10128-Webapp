@@ -1,6 +1,6 @@
-package com.ni.rentalcategory.vo;
+package com.yu.rentalcategory.model;
 
-import com.ni.rental.vo.RentalVO;
+import com.yu.rental.model.RentalVO;
 import java.util.Set;
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -27,14 +27,6 @@ public class RentalCategoryVO {
 
     @OneToMany(mappedBy = "rentalCategory", cascade = CascadeType.ALL) //CascadeType.ALL把對應到的相關資料刪除
     private Set<RentalVO> rentals;
-
-    public Set<RentalVO> getRentals() {
-        return rentals;
-    }
-
-    public void setRentals(Set<RentalVO> rentals) {
-        this.rentals = rentals;
-    }
 
     public Integer getrCatNo() {
         return rCatNo;
@@ -76,10 +68,11 @@ public class RentalCategoryVO {
         this.rDesPrice = rDesPrice;
     }
 
-//    @Override
-//    public String toString() {
-//        return "RentalCategory [rCatNo=" + rCatNo + ", rCatName=" + rCatName + "," +
-//                " rStockQty=" + rStockQty + ", rRentedQty=" + rRentedQty + ", rDesPrice=" + rDesPrice +"]";
-//    }
+    public Set<RentalVO> getRentals() {
+        return rentals;
+    }
 
+    public void setRentals(Set<RentalVO> rentals) {
+        this.rentals = rentals;
+    }
 }

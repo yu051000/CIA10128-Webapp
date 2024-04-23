@@ -1,8 +1,6 @@
 package com.ni.rental.service;
 
 import static com.ni.util.Constants.PAGE_MAX_RESULT;
-
-import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,10 +9,6 @@ import java.util.Set;
 import com.ni.rental.dao.RentalHibernateDAO;
 import com.ni.rental.dao.RentalDAOHibernateImpl;
 import com.ni.rental.vo.RentalVO;
-import com.ni.rental.service.RentalService_Interface;
-import com.ni.util.HibernateUtil;
-import com.ni.util.Constants;
-
 
     // 搭配 JSP / Thymeleaf 後端渲染畫面，將交易動作至於 view filter
     public class RentalServiceImpl implements RentalService_Interface {
@@ -25,61 +19,45 @@ import com.ni.util.Constants;
         public RentalServiceImpl() {
             dao = new RentalDAOHibernateImpl();
         }
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// addRentalCat
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// addRental
         @Override
-        public RentalVO addRental(String rName, BigDecimal rPrice, Integer rSize, String rColor, String rInfo, Byte rStat, Integer rCatNo) {
-
-            RentalVO rentalVO = new RentalVO();
-            rentalVO.setrName(rName);
-            rentalVO.setrPrice(rPrice);
-            rentalVO.setrSize(rSize);
-            rentalVO.setrColor(rColor);
-            rentalVO.setrInfo(rInfo);
-            rentalVO.setrStat(rStat);
-            rentalVO.setrCatNo(rCatNo);
-            dao.add(rentalVO);// 將VO放入DAO的方法內執行資料庫操作
-
+        public RentalVO addRental(RentalVO rentalVO) {
+            dao.insert(rentalVO);// 將VO放入DAO的方法內執行資料庫操作
             return rentalVO;
         }
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// updateRentalCat
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// updateRental
         @Override
-        public RentalVO updateRental(Integer rNo, String rName,BigDecimal rPrice, Integer rSize, String rColor, String rInfo, Byte rStat, Integer rCatNo) {
-
-            RentalVO rentalVO = new RentalVO();
-            rentalVO.setrNo(rNo);
-            rentalVO.setrName(rName);
-            rentalVO.setrPrice(rPrice);
-            rentalVO.setrSize(rSize);
-            rentalVO.setrColor(rColor);
-            rentalVO.setrInfo(rInfo);
-            rentalVO.setrStat(rStat);
-            rentalVO.setrCatNo(rCatNo);
-
+        public RentalVO updateRental(RentalVO rentalVO) {
             dao.update(rentalVO);
             return rentalVO;
         }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// deleteRental
         @Override
         public void deleteRental(Integer rNo) {
             dao.delete(rNo);
         }
 
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// getOneRental
         @Override //單筆查詢(PK)
         public RentalVO getOneRental(Integer rNo) {
             return dao.getByPK(rNo);
         }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// getAll
         @Override   //萬用複合查詢
         public List<RentalVO> getAll() {
             return dao.getAll();
         }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// getAllRentals
         @Override
         public List<RentalVO> getAllRentals(int currentPage) {
             return dao.getAllRentals(currentPage);
         }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// getByCompositeQuery
         @Override
         public List<RentalVO> getByCompositeQuery(Map<String, String[]> map) {
             Map<String, String> query = new HashMap<>();
@@ -105,10 +83,11 @@ import com.ni.util.Constants;
             return dao.getByCompositeQuery(query);
         }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// getPageTotal
         @Override
-        public int getPageTotal() {
+        public long getPageTotal() {
             long total = dao.getPageTotal();
-//            // 計算Emp數量每頁3筆的話總共有幾頁
+            // 計算Emp數量每頁3筆的話總共有幾頁
             int pageQty = (int)(total % PAGE_MAX_RESULT == 0 ? (total / PAGE_MAX_RESULT) : (total / PAGE_MAX_RESULT + 1));
             return pageQty;
         }

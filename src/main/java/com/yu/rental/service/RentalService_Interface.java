@@ -1,16 +1,14 @@
 package com.ni.rental.service;
 
 import com.ni.rental.vo.RentalVO;
-
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
 public interface RentalService_Interface {
 
-    RentalVO addRental(String rName, BigDecimal rPrice, Integer rSize, String rColor, String rInfo, Byte rStat, Integer rCatNo);
+    RentalVO addRental(RentalVO rentalVO);
 
-    RentalVO updateRental(Integer rNo, String rName,BigDecimal rPrice, Integer rSize, String rColor, String rInfo, Byte rStat, Integer rCatNo);
+    RentalVO updateRental(RentalVO rentalVO);
 
     void deleteRental(Integer rNo);
 
@@ -22,5 +20,5 @@ public interface RentalService_Interface {
 
     List<RentalVO> getByCompositeQuery(Map<String, String[]> map); //複合查詢
 
-    int getPageTotal();
+    long getPageTotal();
 }

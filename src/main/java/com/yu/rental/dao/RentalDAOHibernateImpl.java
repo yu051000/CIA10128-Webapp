@@ -8,7 +8,7 @@ import java.util.Map;
 import org.hibernate.Session;
 import com.ni.rental.vo.RentalVO;
 import com.ni.util.HibernateUtil;
-import org.hibernate.query.NativeQuery;
+import org.hibernate.SessionFactory;
 
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -21,92 +21,59 @@ import static java.lang.Byte.valueOf;
 
 public class RentalDAOHibernateImpl implements RentalHibernateDAO {  //Impl是實作類別 (企業常見)
 
-    @Override
-    public int add(RentalVO rentalVO) {
+    // SessionFactory 為 thread-safe，可宣告為屬性讓請求執行緒們共用
+    private SessionFactory factory;
 
-        //建立SessionFactory，且使用getCurrentSession()取得當前的Session並綁定該Thread(執行續)
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-
-        try {
-            session.beginTransaction();
-            Integer id = (Integer) session.save(rentalVO);
-            session.getTransaction().commit();
-            return id;
-        } catch (Exception e) {
-            e.printStackTrace();
-            session.getTransaction().rollback();
-        }
-        return -1;
+    public RentalDAOHibernateImpl() {
+        factory = HibernateUtil.getSessionFactory();
     }
 
+    // Session 為 not thread-safe，所以此方法在各個增刪改查方法裡呼叫
+    // 以避免請求執行緒共用了同個 Session
+    private Session getSession() {
+        return factory.getCurrentSession();
+    }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// add
+    @Override
+    public int insert(RentalVO rentalVO) {
+        // 回傳給 service 剛新增成功的自增主鍵值
+        return (Integer) getSession().save(rentalVO);
+    }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// update
     @Override
     public int update(RentalVO rentalVO) {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         try {
-            session.beginTransaction();
-            session.update(rentalVO);
-            session.getTransaction().commit();
+            getSession().update(rentalVO);
             return 1;
-
         } catch (Exception e) {
-            e.printStackTrace();
-            session.getTransaction().rollback();
+            return -1;
         }
-        return -1;
     }
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// delete
     @Override
     public int delete(Integer rNo) {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        try {
-            session.beginTransaction();
-            RentalVO rentalVO = session.get(RentalVO.class, rNo);
-            if (rentalVO != null) {
-                session.delete(rentalVO);
-            }
-            session.getTransaction().commit();
-            return 1;
+        RentalVO rentalVO = getSession().get(RentalVO.class, rNo);
+        if (rentalVO != null) {
+            getSession().delete(rentalVO);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            session.getTransaction().rollback();
+            return 1; // 回傳給 service，1代表刪除成功
+        } else {
+            return -1; // 回傳給 service，-1代表刪除失敗
         }
-        return -1;
     }
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// getByPK
     @Override
     public RentalVO getByPK(Integer rNo) {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        try {
-            session.beginTransaction();
-            RentalVO rentalVO= session.get(RentalVO.class, rNo);
-            session.getTransaction().commit();
-            return rentalVO;
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            session.getTransaction().rollback();
+            return getSession().get(RentalVO.class, rNo);
         }
-        return null;
-    }
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// getAll
     @Override //查詢全部(回傳List集合)
     public List<RentalVO> getAll() {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        try {
-            session.beginTransaction();
-            List<RentalVO> list = session.createQuery("from RentalVO", RentalVO.class).list();// 在 Hibernate中編寫查詢而轉換的SQL， ("from DB的類名", RentalVO.class")
-            session.getTransaction().commit();
-            return list;
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            session.getTransaction().rollback();
-        }
-        return null;
+        return getSession().createQuery("from RentalVO", RentalVO.class).list();
     }
 
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// getByCompositeQuery
     // 複合查詢
     @Override
     public List<RentalVO> getByCompositeQuery(Map<String, String> map) {
@@ -177,50 +144,21 @@ public class RentalDAOHibernateImpl implements RentalHibernateDAO {  //Impl是�
         }
         return null;
     }
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// getPageTotal
     @Override
-    public int getPageTotal() {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        try {
-            session.beginTransaction();
-
-            NativeQuery<RentalVO> query = session.createNativeQuery("select count(*) from RentalVO");
-            query.addEntity(RentalVO.class); // 使用addEntity()，可指定list回傳的是原本的資料型別
-            List<RentalVO> list = query.list();
-
-            session.getTransaction().commit();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            session.getTransaction().rollback();
-        } finally {
-            HibernateUtil.shutdown();
-        }
-        return -1;
+    public long getPageTotal() {
+        return getSession().createQuery("select count(*) from RentalVO", Long.class).uniqueResult();
     }
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// getAllRentals
     @Override
     public List<RentalVO> getAllRentals(int currentPage) {  //設定分頁
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         int first = (currentPage - 1) * PAGE_MAX_RESULT;
-
-        try {
-            session.beginTransaction();
-            List<RentalVO> result = session.createQuery("from RentalVO", RentalVO.class)
-                    .setFirstResult(first)
-                    .setMaxResults(PAGE_MAX_RESULT)
-                    .list();
-            session.getTransaction().commit();
-            return result;
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            session.getTransaction().rollback();
-        } finally {
-            HibernateUtil.shutdown();
-        }
-        return null;
+        return getSession().createQuery("from RentalVO", RentalVO.class)
+                .setFirstResult(first)
+                .setMaxResults(PAGE_MAX_RESULT)
+                .list();
     }
+
 //======================= 尚待新增 =======================================//
     //    public List<String> getUserNames() {
 //        try (Session session = sessionFactory.openSession()) {
