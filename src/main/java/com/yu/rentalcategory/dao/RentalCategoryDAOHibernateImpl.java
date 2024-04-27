@@ -227,7 +227,7 @@ public class RentalCategoryDAOHibernateImpl implements RentalCategoryHibernateDA
     }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// getByDesPrice
-    @Override
+    @Override  //搜尋押金
     public RentalCategoryVO getByDesPrice(BigDecimal rDesPrice) {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         try {

@@ -3,66 +3,198 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
+    <parent><!-- ＠用途說明1: 從 Spring Boot 繼承預設值 -->
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.7.0</version>
+        <relativePath/> <!-- 從儲存庫中尋找父級 -->
+    </parent>
     <groupId>com.fallelove</groupId>
     <artifactId>CIA10128-Webapp</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
-
     <name>CIA10128-Webapp Maven Webapp</name>
-    <!-- FIXME change it to the project's website -->
-    <url>http://www.example.com</url>
+    <url>http://www.example.com</url><!-- 將其更改為專案的網站 -->
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+        <java.version>17</java.version>
     </properties>
 
     <dependencies>
+        <dependency><!-- ＠用途說明2: 新增 Web 應用程式的典型相依性 -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency><!-- ＠用途說明3: 將嵌入的 servlet 容器標記為所提供的 -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency><!-- ＠用途說明4: test -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency><!-- 用途說明5: 將 Spring Data JPA 與 Hibernate 結合使用的入門程序 -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <!-- 用途說明6: for log4j.properties -->
+        <!-- Spring Boot日誌系統預設是使用logback -->
+        <!-- 對於習慣了log4j的開發者，Spring Boot依然有很好的支援 -->
+        <!-- 不過我們在引入log4j之前，需要先排除該logback jar的依賴，再引入log4j的依賴，如下所示: -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
+            <!-- <version>2.7.0</version> -->
+        </dependency>
+<!-- =============================================================================================================== -->
+        <!-- hibernate-core 核心 -->
+        <!-- spring-boot-starter-data-jpa(2.7.0) 已內建 Hibernate 5.6.9 依賴，但預設未下載 -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <!-- <version>5.6.9.Final</version> -->
+        </dependency>
+
+        <!-- hibernate-c3p0 連線池 --> <!-- spring-boot 已內建依賴，但預設未下載 -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-c3p0</artifactId>
+            <!-- <version>5.6.9.Final</version> -->
+        </dependency>
+
+        <!-- hibernate-proxool 連線池 --> <!-- spring-boot 已內建依賴，但預設未下載 -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-proxool</artifactId>
+            <!-- <version>5.6.9.Final</version> -->
+        </dependency>
+<!-- =============================================================================================================== -->
+        <!-- mysql (workbench目前為8.0.36版)-->
         <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
             <version>8.0.32</version>
         </dependency>
-
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>5.6.15.Final</version>
-        </dependency>
+<!-- =============================================================================================================== -->
+        <!-- gson -->
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>2.9.0</version>
         </dependency>
+<!-- =============================================================================================================== -->
+        <!-- Servlet 4.0.1 -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>4.0.1</version>
-            <scope>provided</scope>
+            <scope>provided</scope> <!-- ※provided只提供編譯，jar檔不匯出 -->
         </dependency>
+
         <dependency>
             <groupId>javax.servlet.jsp</groupId>
             <artifactId>javax.servlet.jsp-api</artifactId>
             <version>2.3.3</version>
             <scope>provided</scope>
         </dependency>
+
+        <!-- JSTL --> <!-- spring-boot 未內建依賴 -->
         <dependency>
-            <groupId>org.glassfish.web</groupId>
-            <artifactId>javax.servlet.jsp.jstl</artifactId>
+            <groupId>org.apache.taglibs</groupId>
+            <artifactId>taglibs-standard-impl</artifactId>
             <version>1.2.5</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>javax.servlet</groupId>
-                    <artifactId>servlet-api</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>javax.servlet.jsp</groupId>
-                    <artifactId>jsp-api</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
+
+        <!-- JSTL --> <!-- spring-boot 未內建依賴 -->
+        <dependency>
+            <groupId>org.apache.taglibs</groupId>
+            <artifactId>taglibs-standard-spec</artifactId>
+            <version>1.2.5</version>
+        </dependency>
+
+        <!-- websocket --> <!-- spring-boot 已內建依賴，但預設未下載 -->
+        <dependency>
+            <groupId>javax.websocket</groupId>
+            <artifactId>javax.websocket-api</artifactId>
+            <!-- <version>1.1</version> -->
+            <scope>provided</scope> <!-- ※provided只提供編譯，jar檔不匯出 -->
+        </dependency>
+
+        <!-- javax.json --> <!-- spring-boot 未內建依賴 -->
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>javax.json</artifactId>
+            <version>1.1.4</version>
+        </dependency>
+
+        <!-- com.sun.mail --> <!-- spring-boot 未內建依賴 -->
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+<!-- =============================================================================================================== -->
+        <!-- JSR 303/349/380 Bean Validation Framework 預備使用-->
+
+        <!-- javax.validation --> <!-- spring-boot(2.7.0) 已內建依賴，但預設未下載 -->
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <!-- <version>2.0.1.Final</version> -->
+        </dependency>
+
+        <!-- org.hibernate.validator --> <!-- spring-boot(2.7.0) 已內建依賴，但預設未下載 -->
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <!-- <version>6.2.3.Final</version> -->
+        </dependency>
+<!-- =============================================================================================================== -->
+        <!-- thymeleaf 預備使用-->
+
+        <!-- thymeleaf -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>nz.net.ultraq.thymeleaf</groupId>
+            <artifactId>thymeleaf-layout-dialect</artifactId>
+        </dependency>
+
+        <!-- hot swapping, disable cache for template, enable live reload. (讓項目支持不重啟即可生效) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Optional, for bootstrap -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>4.2.1</version>
+        </dependency>
+<!-- =============================================================================================================== -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -73,7 +205,7 @@
 
     <build>
         <finalName>CIA10128-Webapp</finalName>
-        <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+        <pluginManagement><!-- 鎖定插件版本以避免使用 Maven 預設值 (可能會被移到父pom) -->
             <plugins>
                 <plugin>
                     <artifactId>maven-clean-plugin</artifactId>
@@ -103,6 +235,10 @@
                 <plugin>
                     <artifactId>maven-deploy-plugin</artifactId>
                     <version>2.8.2</version>
+                </plugin>
+                <plugin><!-- ＠用途說明: 打包為可執行的 jar/war -->
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
                 </plugin>
             </plugins>
         </pluginManagement>

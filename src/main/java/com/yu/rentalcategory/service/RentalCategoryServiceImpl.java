@@ -108,7 +108,7 @@ import com.yu.util.Constants;
         }
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// getOneRentalCatName
     @Override
-    public RentalCategoryVO getOneRentalCatName(String rCatName) {
+    public RentalCategoryVO getOneRentalrCatName(String rCatName) {
         return dao.getByName(rCatName);
     }
 

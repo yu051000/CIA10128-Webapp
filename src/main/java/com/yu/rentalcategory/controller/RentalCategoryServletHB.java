@@ -43,7 +43,7 @@ import com.yu.rentalcategory.model.RentalCategoryVO;
                     forwardPath = getByCompositeQuery(req, res);
                     break;
                 default:
-                    forwardPath = "/index.jsp";
+                    forwardPath = "/index.jsp"; //預設進入首頁
             }
             RequestDispatcher dispatcher = req.getRequestDispatcher(forwardPath);
             dispatcher.forward(req, res);

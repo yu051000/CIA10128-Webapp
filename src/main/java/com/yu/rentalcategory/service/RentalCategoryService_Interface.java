@@ -15,7 +15,7 @@ public interface RentalCategoryService_Interface {
 
     RentalCategoryVO getOneRentalCat(Integer rCatNo);//單筆查詢(PK)
 
-    RentalCategoryVO getOneRentalCatName(String rCatName); //單筆查詢(類別名稱)
+    RentalCategoryVO getOneRentalrCatName(String rCatName); //單筆查詢(類別名稱)
 
     RentalCategoryVO getOneRentalrDesPrice(BigDecimal rDesPrice); //單筆查詢(押金)
 
@@ -24,6 +24,8 @@ public interface RentalCategoryService_Interface {
     List<RentalCategoryVO> getAllRentalCats(int currentPage); //查詢當前頁面
 
     List<RentalCategoryVO> getByCompositeQuery(Map<String, String[]> map); //複合查詢
+
+
 
     int getPageTotal();
 }
