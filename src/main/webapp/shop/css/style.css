@@ -526,16 +526,6 @@ ol {
 	margin-right: 0;
 }
 
-.header__nav__option .price {
-	font-size: 15px;
-	color: #111111;
-	font-weight: 700;
-	display: inline-block;
-	margin-left: -20px;
-	position: relative;
-	top: 3px;
-}
-
 .offcanvas-menu-wrapper {
 	display: none;
 }
@@ -945,14 +935,6 @@ ol {
 	background: #111111;
 }
 
-.product__item.sale .product__item__text .rating i {
-	color: #f7941d;
-}
-
-.product__item.sale .product__item__text .rating i:nth-last-child(1) {
-	color: #b7b7b7;
-}
-
 .product__item:hover .product__item__pic .product__hover {
 	right: 20px;
 	opacity: 1;
@@ -1078,16 +1060,6 @@ ol {
 	transition: all, 0.3s;
 }
 
-.product__item__text .rating {
-	margin-bottom: 6px;
-}
-
-.product__item__text .rating i {
-	font-size: 14px;
-	color: #b7b7b7;
-	margin-right: -5px;
-}
-
 .product__item__text h5 {
 	color: #0d0d0d;
 	font-weight: 700;
@@ -1184,11 +1156,11 @@ ol {
 .shop__sidebar__search form input::-ms-input-placeholder {
 	color: #b7b7b7;
 }
-
+/* 左邊搜尋區輸入框 */
 .shop__sidebar__search form input::placeholder {
 	color: #b7b7b7;
 }
-
+/* 放大鏡搜尋鍵 */
 .shop__sidebar__search form button {
 	color: #b7b7b7;
 	font-size: 15px;
@@ -1200,7 +1172,7 @@ ol {
 	top: 0;
 	height: 100%;
 }
-
+/* 選擇類別欄位： */
 .shop__sidebar__accordion .card {
 	border: none;
 	border-radius: 0;
@@ -3396,12 +3368,6 @@ ol {
 	.header__menu ul li {
 		margin-right: 10px;
 	}
-	.header__nav__option a {
-		margin-right: 10px;
-	}
-	.header__nav__option .price {
-		margin-left: 0;
-	}
 	.hero__slider.owl-carousel .owl-nav button {
 		left: 2px;
 	}
@@ -3614,34 +3580,34 @@ ol {
 		padding: 2px 15px;
 		cursor: pointer;
 	}
-	.offcanvas__nav__option {
-		text-align: center;
-		margin-bottom: 25px;
-	}
-	.offcanvas__nav__option a {
-		display: inline-block;
-		margin-right: 26px;
-		position: relative;
-	}
-	.offcanvas__nav__option a span {
-		color: #0d0d0d;
-		font-size: 11px;
-		position: absolute;
-		left: 5px;
-		top: 8px;
-	}
-	.offcanvas__nav__option a:last-child {
-		margin-right: 0;
-	}
-	.offcanvas__nav__option .price {
-		font-size: 15px;
-		color: #111111;
-		font-weight: 700;
-		display: inline-block;
-		margin-left: -20px;
-		position: relative;
-		top: 3px;
-	}
+	/*.offcanvas__nav__option {*/
+	/*	text-align: center;*/
+	/*	margin-bottom: 25px;*/
+	/*}*/
+	/*.offcanvas__nav__option a {*/
+	/*	display: inline-block;*/
+	/*	margin-right: 26px;*/
+	/*	position: relative;*/
+	/*}*/
+	/*.offcanvas__nav__option a span {*/
+	/*	color: #0d0d0d;*/
+	/*	font-size: 11px;*/
+	/*	position: absolute;*/
+	/*	left: 5px;*/
+	/*	top: 8px;*/
+	/*}*/
+	/*.offcanvas__nav__option a:last-child {*/
+	/*	margin-right: 0;*/
+	/*}*/
+	/*.offcanvas__nav__option .price {*/
+	/*	font-size: 15px;*/
+	/*	color: #111111;*/
+	/*	font-weight: 700;*/
+	/*	display: inline-block;*/
+	/*	margin-left: -20px;*/
+	/*	position: relative;*/
+	/*	top: 3px;*/
+	/*}*/
 	.offcanvas__text p {
 		color: #111111;
 		margin-bottom: 0;
