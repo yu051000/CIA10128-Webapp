@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:aop="http://www.springframework.org/schema/aop"
+xmlns:tx="http://www.springframework.org/schema/tx"
+xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/> <!--●● for @Autowired (●自動裝配)(Spring ORM 課程)  --> 
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<property name="dataSourceProperties">
+			<props>
+				<prop key="url">jdbc:mysql://localhost:3306/fallelove?serverTimezone=Asia/Taipei
+				</prop>
+				<prop key="user">root</prop>
+				<prop key="password">shirley24608339</prop>
+			</props>
+		</property>
+		<property name="dataSourceClassName" value="com.mysql.cj.jdbc.MysqlDataSource" />
+	</bean>
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource">   <!--●● 改使用Spring Boot官方建議的【HikariDataSource】 -->
+		<constructor-arg ref="hikariConfig" />
+	</bean>
+
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean" destroy-method="destroy">
+		<property name="dataSource" ref="dataSource" />
+
+        <property name="packagesToScan" value="com"/>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.cache.provider_class">org.hibernate.cache.NoCacheProvider</prop>
+				<prop key="hibernate.transaction.coordinator_class">jdbc</prop>
+				<prop key="hibernate.current_session_context_class">org.springframework.orm.hibernate5.SpringSessionContext</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="rentalCatDAO" class="com.yu.rentalcategory.dao.RentalCategoryDAOHibernateImpl">
+<!-- 		<property name="hibernateTemplate" ref="hibernateTemplate" /> -->  <!-- for @Autowired (自動裝配) -->
+	</bean>
+
+	<bean id="rentalDAO" class="com.yu.rental.dao.RentalDAOHibernateImpl">
+<!-- 		<property name="hibernateTemplate" ref="hibernateTemplate" /> -->  <!-- for @Autowired (自動裝配) -->
+	</bean>
+
+	<bean id="rentalFAVDAO" class="com.yu.rentalmyfavorite.dao.RentalMyFavoriteDAOHibernateImpl">
+		<!-- 		<property name="hibernateTemplate" ref="hibernateTemplate" /> -->  <!-- for @Autowired (自動裝配) -->
+	</bean>
+
+	<bean id="rentalPicDAO" class="com.yu.rentalpic.dao.RentalPicDAOHibernateImpl">
+		<!-- 		<property name="hibernateTemplate" ref="hibernateTemplate" /> -->  <!-- for @Autowired (自動裝配) -->
+	</bean>
+
+	<bean id="rentalSetDAO" class="com.yu.rentalset.dao.RentSetDAOHibernateImpl">
+		<!-- 		<property name="hibernateTemplate" ref="hibernateTemplate" /> -->  <!-- for @Autowired (自動裝配) -->
+	</bean>
+	<!-- =================================================================================================================== -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<!-- =================================================================================================================== -->
+	<tx:advice id="txAdvice"
+		transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="insert" propagation="REQUIRED" />
+			<tx:method name="update" propagation="REQUIRED" />
+			<tx:method name="delete" propagation="REQUIRED" />
+			<tx:method name="findByPrimaryKey" read-only="true" />
+			<tx:method name="getAll" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+
+	<aop:config>
+		<aop:pointcut id="empDAOPointcut" expression="execution(* com.emp.model.EmpDAO_interface.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="empDAOPointcut" />
+	</aop:config>
+
+	<aop:config>
+		<aop:pointcut id="deptDAOPointcut" expression="execution(* com.dept.model.DeptDAO_interface.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="deptDAOPointcut" />
+	</aop:config>
+</beans>
